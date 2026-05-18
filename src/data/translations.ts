@@ -11,9 +11,9 @@ export const translations = {
     },
     hero: {
       available: "Available for new opportunities",
-      title_1: "Building scalable",
-      title_2: "backend systems",
-      subtitle: "Senior Fullstack Engineer & AI Automation Builder. Specializing in Node.js, Next.js, and creating production-grade architectures that scale.",
+      title_1: "Next-generation",
+      title_2: "web development.",
+      subtitle: "Junior Fullstack Developer | Accelerated learning & AI integration to build fast, modern solutions.",
       view_architecture: "View Architecture",
       github_profile: "GitHub Profile"
     },
@@ -45,7 +45,7 @@ export const translations = {
     philosophy: {
       title_1: "Engineering",
       title_2: "Philosophy",
-      subtitle: "Great software is not just written; it's architected. My approach bridges the gap between modern tooling and timeless software design patterns.",
+      subtitle: "Web development has evolved. My approach combines the speed of AI tooling with solid programming foundations to build innovative products.",
       items: [
         {
           title: "Clean Architecture",
@@ -72,8 +72,8 @@ export const translations = {
       completed: "Completed"
     },
     stack: {
-      title_1: "Technology",
-      title_2: "Arsenal",
+      title_1: "My",
+      title_2: "Tools",
       subtitle: "A curated stack selected for building high-performance, scalable, and secure systems. No fluff, just production-tested technologies.",
       groups: {
         backend: "Backend & Core",
@@ -106,9 +106,9 @@ export const translations = {
     },
     hero: {
       available: "Disponible para nuevas oportunidades",
-      title_1: "Construyendo sistemas",
-      title_2: "backend escalables",
-      subtitle: "Senior Fullstack Engineer & AI Automation Builder. Especializado en Node.js, Next.js y en crear arquitecturas de nivel producción que escalan.",
+      title_1: "Desarrollo web",
+      title_2: "de nueva generación.",
+      subtitle: "Desarrollador Fullstack Junior | Aprendizaje acelerado e integración de IA para crear soluciones rápidas y modernas.",
       view_architecture: "Ver Arquitectura",
       github_profile: "Perfil de GitHub"
     },
@@ -140,7 +140,7 @@ export const translations = {
     philosophy: {
       title_1: "Filosofía de",
       title_2: "Ingeniería",
-      subtitle: "El gran software no solo se escribe; se diseña. Mi enfoque acorta la brecha entre las herramientas modernas y los patrones de diseño de software atemporales.",
+      subtitle: "El desarrollo web cambió. Mi enfoque une la velocidad de las herramientas de IA con bases sólidas de programación para crear productos que innovan.",
       items: [
         {
           title: "Arquitectura Limpia",
@@ -167,8 +167,8 @@ export const translations = {
       completed: "Completado"
     },
     stack: {
-      title_1: "Arsenal",
-      title_2: "Tecnológico",
+      title_1: "Mis",
+      title_2: "Herramientas",
       subtitle: "Un stack seleccionado para construir sistemas de alto rendimiento, escalables y seguros. Nada de relleno, solo tecnologías probadas en producción.",
       groups: {
         backend: "Backend y Core",

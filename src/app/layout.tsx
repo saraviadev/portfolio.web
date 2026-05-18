@@ -4,12 +4,13 @@ import { Inter } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { BackgroundAnimation } from "@/components/ui/BackgroundAnimation";
 import { LanguagePromptModal } from "@/components/sections/LanguagePromptModal";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Theo Saravia | Senior Fullstack Engineer",
+  title: "Theo Saravia | Next-Gen Fullstack Developer",
   description: "Portfolio of Theo Saravia, specializing in Modern Web Architecture, Next.js, Node.js, and AI Automation.",
 };
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark">
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
+        <BackgroundAnimation />
         <LanguageProvider>
           <LanguagePromptModal />
           <div className="flex min-h-screen flex-col relative overflow-x-hidden">

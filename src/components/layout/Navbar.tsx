@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Mail, Terminal } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function Navbar() {
@@ -15,8 +15,8 @@ export function Navbar() {
           <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary/20 transition-colors">
             <Terminal className="w-5 h-5 text-primary" />
           </div>
-          <span className="font-mono font-bold text-lg tracking-tighter">
-            THEO<span className="text-primary">.dev</span>
+          <span className="font-mono font-bold text-lg tracking-tighter uppercase">
+            SARAVIA<span className="text-primary">.dev</span>
           </span>
         </Link>
         
@@ -31,8 +31,11 @@ export function Navbar() {
           <Link href="https://github.com/46theosaravia46-cyber" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
             <FaGithub className="w-5 h-5" />
           </Link>
-          <Link href="https://linkedin.com/in/tu-perfil" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
+          <Link href="https://linkedin.com/in/theo-saravia-239688364/" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
             <FaLinkedin className="w-5 h-5" />
+          </Link>
+          <Link href="https://instagram.com/saravia.dev" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
+            <FaInstagram className="w-5 h-5" />
           </Link>
           <button 
             onClick={() => setLanguage(language === "en" ? "es" : "en")}

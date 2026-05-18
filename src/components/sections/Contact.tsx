@@ -1,7 +1,7 @@
 "use client";
 
 import { Mail } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -26,15 +26,25 @@ export function Contact() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-            <Link 
-              href="mailto:46theosaravia46@gmail.com"
-              className="h-14 px-8 w-full sm:w-auto rounded-full bg-primary text-primary-foreground font-medium flex items-center justify-center space-x-2 hover:bg-primary/90 transition-transform hover:scale-105"
-            >
-              <Mail className="w-5 h-5" />
-              <span>{t.contact.button}</span>
-            </Link>
+            <div className="flex flex-col gap-4 w-full sm:w-auto">
+              <Link 
+                href="mailto:46theosaravia46@gmail.com"
+                className="h-14 px-8 w-full sm:w-auto rounded-full bg-primary/10 border border-primary/20 text-primary font-medium flex items-center justify-center space-x-3 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              >
+                <Mail className="w-5 h-5" />
+                <span className="font-mono text-sm">46theosaravia46@gmail.com</span>
+              </Link>
+              <Link 
+                href="https://wa.me/5491127537746"
+                target="_blank"
+                className="h-14 px-8 w-full sm:w-auto rounded-full bg-green-500/10 border border-green-500/20 text-green-500 font-medium flex items-center justify-center space-x-3 hover:bg-green-500 hover:text-white transition-all duration-300"
+              >
+                <FaWhatsapp className="w-5 h-5" />
+                <span className="font-mono text-sm">+54 9 11 2753-7746</span>
+              </Link>
+            </div>
             
-            <div className="flex gap-4">
+            <div className="flex sm:flex-col gap-4 mt-4 sm:mt-0">
               <Link 
                 href="https://github.com/46theosaravia46-cyber"
                 target="_blank"
@@ -43,11 +53,18 @@ export function Contact() {
                 <FaGithub className="w-5 h-5" />
               </Link>
               <Link 
-                href="https://linkedin.com/in/tu-perfil"
+                href="https://www.linkedin.com/in/theo-saravia-239688364/"
                 target="_blank"
                 className="h-14 w-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
               >
                 <FaLinkedin className="w-5 h-5" />
+              </Link>
+              <Link 
+                href="https://instagram.com/saravia.dev"
+                target="_blank"
+                className="h-14 w-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
+              >
+                <FaInstagram className="w-5 h-5" />
               </Link>
             </div>
           </div>

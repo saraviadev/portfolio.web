@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Terminal } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { ArchitectureModal } from "@/components/ui/ArchitectureModal";
 
 export function HeroSection() {
   const { t } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
@@ -52,13 +55,13 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4"
         >
-          <Link
-            href="#projects"
+          <button
+            onClick={() => setIsModalOpen(true)}
             className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-medium flex items-center space-x-2 hover:bg-primary/90 transition-all hover:scale-105"
           >
             <span>{t.hero.view_architecture}</span>
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </button>
           <Link
             href="https://github.com/46theosaravia46-cyber"
             target="_blank"
@@ -84,6 +87,8 @@ export function HeroSection() {
           ))}
         </motion.div>
       </div>
+
+      <ArchitectureModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

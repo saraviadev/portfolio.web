@@ -22,6 +22,7 @@ export function CertificationsTitles() {
       icon: <Award className="w-8 h-8 text-secondary-foreground" />,
       skills: ["React.js", "State Management", "Component Architecture", "Hooks", "Performance"],
       status: t.certifications.completed,
+      link: "/certificates/frontend.pdf"
     }
   ];
 
@@ -46,17 +47,29 @@ export function CertificationsTitles() {
               key={index} 
               className="group glass p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8 hover:bg-white/[0.03] transition-colors border border-white/5 hover:border-primary/20"
             >
-              <div className="flex items-start gap-6">
+              <div className="flex items-start gap-6 w-full">
                 <div className="mt-1 p-4 bg-background rounded-2xl border border-white/5 group-hover:border-primary/30 transition-colors">
                   {cert.icon}
                 </div>
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl md:text-2xl font-bold">{cert.title}</h3>
-                    <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold flex items-center gap-1 border border-primary/20">
-                      <CheckCircle2 className="w-3 h-3" />
-                      {cert.status}
-                    </span>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between gap-3 mb-2 w-full">
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-xl md:text-2xl font-bold">{cert.title}</h3>
+                      <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold flex items-center gap-1 border border-primary/20">
+                        <CheckCircle2 className="w-3 h-3" />
+                        {cert.status}
+                      </span>
+                    </div>
+                    {cert.link && (
+                      <a 
+                        href={cert.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium text-primary hover:text-primary/80 transition-colors hidden md:block"
+                      >
+                        Ver Original
+                      </a>
+                    )}
                   </div>
                   <p className="text-muted-foreground font-medium mb-1">{cert.institution}</p>
                   <p className="text-sm text-muted-foreground/70 mb-4">{cert.date}</p>
@@ -68,6 +81,16 @@ export function CertificationsTitles() {
                       </span>
                     ))}
                   </div>
+                  {cert.link && (
+                    <a 
+                      href={cert.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-primary hover:underline mt-4 inline-block md:hidden"
+                    >
+                      Ver Certificado Original
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
