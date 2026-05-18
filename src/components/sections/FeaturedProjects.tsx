@@ -1,44 +1,38 @@
 import { Server, Database, Shield } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
-
-const projects = [
-  {
-    title: "UTN E-Commerce Backend Architecture",
-    description: "A production-ready e-commerce API built with Node.js, Express, and MongoDB. Implements complete authentication, role-based access control, cart management, and secure checkout workflows.",
-    architecture: ["Node.js", "Express", "MongoDB", "JWT", "Swagger"],
-    metrics: ["100% Test Coverage", "RESTful", "Modular"],
-    icon: <Server className="w-6 h-6 text-primary" />,
-    github: "https://github.com/46theosaravia46-cyber",
-  },
-  {
-    title: "Secure Identity Provider Microservice",
-    description: "Standalone authentication service using OAuth2 and JWT. Features rate limiting, payload validation (Joi/Zod), centralized error handling, and robust middleware pipelines.",
-    architecture: ["TypeScript", "Express", "Redis", "Argon2"],
-    metrics: ["OWASP 2025", "Stateless", "High Performance"],
-    icon: <Shield className="w-6 h-6 text-primary" />,
-    github: "https://github.com/46theosaravia46-cyber",
-  },
-  {
-    title: "High-Frequency Data Aggregator",
-    description: "Complex MongoDB aggregation pipelines optimizing read-heavy operations. Implements advanced indexing (ESR rule) reducing query times by 85%.",
-    architecture: ["MongoDB", "Mongoose", "Node.js", "Jest"],
-    metrics: ["Sub-50ms Queries", "Aggregations", "Scalable"],
-    icon: <Database className="w-6 h-6 text-primary" />,
-    github: "https://github.com/46theosaravia46-cyber",
-  }
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function FeaturedProjects() {
+  const { t } = useLanguage();
+
+  const projects = [
+    {
+      ...t.projects.items[0],
+      icon: <Server className="w-6 h-6 text-primary" />,
+      github: "https://github.com/46theosaravia46-cyber",
+    },
+    {
+      ...t.projects.items[1],
+      icon: <Shield className="w-6 h-6 text-primary" />,
+      github: "https://github.com/46theosaravia46-cyber",
+    },
+    {
+      ...t.projects.items[2],
+      icon: <Database className="w-6 h-6 text-primary" />,
+      github: "https://github.com/46theosaravia46-cyber",
+    }
+  ];
+
   return (
     <section id="projects" className="py-32 relative">
       <div className="container mx-auto px-4">
         <div className="mb-16 md:mb-24 max-w-2xl">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-            Featured <span className="text-primary">Systems</span>
+            {t.projects.title_1} <span className="text-primary">{t.projects.title_2}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Showcasing backend architectures and scalable APIs built during the UTN program and independent freelance work. Focused on performance, security, and clean code.
+            {t.projects.subtitle}
           </p>
         </div>
 

@@ -1,48 +1,51 @@
 import { Database, Layout, Server, Settings, ShieldAlert, Cpu } from "lucide-react";
-
-const stackGroups = [
-  {
-    title: "Backend & Core",
-    icon: <Server className="w-5 h-5 text-primary" />,
-    skills: ["Node.js", "Express.js", "TypeScript", "REST APIs", "GraphQL"]
-  },
-  {
-    title: "Databases & Storage",
-    icon: <Database className="w-5 h-5 text-primary" />,
-    skills: ["MongoDB", "Mongoose", "PostgreSQL", "Redis", "Cloudinary"]
-  },
-  {
-    title: "Frontend & UI",
-    icon: <Layout className="w-5 h-5 text-primary" />,
-    skills: ["Next.js (App Router)", "React.js", "TailwindCSS", "shadcn/ui", "Framer Motion"]
-  },
-  {
-    title: "Architecture & Security",
-    icon: <ShieldAlert className="w-5 h-5 text-primary" />,
-    skills: ["JWT / OAuth2", "Microservices", "Clean Architecture", "OWASP Best Practices", "Zod / Joi"]
-  },
-  {
-    title: "DevOps & Tooling",
-    icon: <Settings className="w-5 h-5 text-primary" />,
-    skills: ["Docker", "Git / GitHub Actions", "Vercel", "Render", "Postman"]
-  },
-  {
-    title: "AI & Automation",
-    icon: <Cpu className="w-5 h-5 text-primary" />,
-    skills: ["Puppeteer", "LLM Integration", "Agentic Workflows", "Prompt Engineering", "Custom Scripts"]
-  }
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function TechStack() {
+  const { t } = useLanguage();
+
+  const stackGroups = [
+    {
+      title: t.stack.groups.backend,
+      icon: <Server className="w-5 h-5 text-primary" />,
+      skills: ["Node.js", "Express.js", "TypeScript", "REST APIs", "GraphQL"]
+    },
+    {
+      title: t.stack.groups.database,
+      icon: <Database className="w-5 h-5 text-primary" />,
+      skills: ["MongoDB", "Mongoose", "PostgreSQL", "Redis", "Cloudinary"]
+    },
+    {
+      title: t.stack.groups.frontend,
+      icon: <Layout className="w-5 h-5 text-primary" />,
+      skills: ["Next.js (App Router)", "React.js", "TailwindCSS", "shadcn/ui", "Framer Motion"]
+    },
+    {
+      title: t.stack.groups.architecture,
+      icon: <ShieldAlert className="w-5 h-5 text-primary" />,
+      skills: ["JWT / OAuth2", "Microservices", "Clean Architecture", "OWASP Best Practices", "Zod / Joi"]
+    },
+    {
+      title: t.stack.groups.devops,
+      icon: <Settings className="w-5 h-5 text-primary" />,
+      skills: ["Docker", "Git / GitHub Actions", "Vercel", "Render", "Postman"]
+    },
+    {
+      title: t.stack.groups.ai,
+      icon: <Cpu className="w-5 h-5 text-primary" />,
+      skills: ["Puppeteer", "LLM Integration", "Agentic Workflows", "Prompt Engineering", "Custom Scripts"]
+    }
+  ];
+
   return (
     <section id="stack" className="py-32 bg-background border-t border-white/5 relative">
       <div className="container mx-auto px-4">
         <div className="mb-16 md:mb-24 text-center max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-            Technology <span className="text-primary">Arsenal</span>
+            {t.stack.title_1} <span className="text-primary">{t.stack.title_2}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            A curated stack selected for building high-performance, scalable, and secure systems. No fluff, just production-tested technologies.
+            {t.stack.subtitle}
           </p>
         </div>
 

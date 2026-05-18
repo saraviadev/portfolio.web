@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Terminal } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Background gradients */}
@@ -19,7 +22,7 @@ export function HeroSection() {
           className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8"
         >
           <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-sm font-medium text-muted-foreground">Available for new opportunities</span>
+          <span className="text-sm font-medium text-muted-foreground">{t.hero.available}</span>
         </motion.div>
 
         <motion.h1
@@ -28,9 +31,9 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
         >
-          Building scalable <br className="hidden md:block" />
+          {t.hero.title_1} <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">
-            backend systems
+            {t.hero.title_2}
           </span>
         </motion.h1>
 
@@ -40,7 +43,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-[600px] text-lg md:text-xl text-muted-foreground mb-10"
         >
-          Senior Fullstack Engineer & AI Automation Builder. Specializing in Node.js, Next.js, and creating production-grade architectures that scale.
+          {t.hero.subtitle}
         </motion.p>
 
         <motion.div
@@ -53,7 +56,7 @@ export function HeroSection() {
             href="#projects"
             className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-medium flex items-center space-x-2 hover:bg-primary/90 transition-all hover:scale-105"
           >
-            <span>View Architecture</span>
+            <span>{t.hero.view_architecture}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
@@ -62,7 +65,7 @@ export function HeroSection() {
             className="h-12 px-8 rounded-full bg-white/5 border border-white/10 text-white font-medium flex items-center space-x-2 hover:bg-white/10 transition-all"
           >
             <Terminal className="w-4 h-4" />
-            <span>GitHub Profile</span>
+            <span>{t.hero.github_profile}</span>
           </Link>
         </motion.div>
 

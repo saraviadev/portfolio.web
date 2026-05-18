@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Inter } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { LanguagePromptModal } from "@/components/sections/LanguagePromptModal";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -19,12 +21,14 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark">
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
-        <div className="flex min-h-screen flex-col relative overflow-x-hidden">
-          {/* Subtle background noise/grid can go here if needed */}
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        <LanguageProvider>
+          <LanguagePromptModal />
+          <div className="flex min-h-screen flex-col relative overflow-x-hidden">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,25 +1,28 @@
 import { Award, GraduationCap, CheckCircle2 } from "lucide-react";
-
-const certifications = [
-  {
-    title: "Backend Development Specialization",
-    institution: "Universidad Tecnológica Nacional (UTN)",
-    date: "2024 - 2025",
-    icon: <GraduationCap className="w-8 h-8 text-primary" />,
-    skills: ["Node.js Architecture", "MongoDB", "Express", "API Security", "Design Patterns"],
-    status: "Completed",
-  },
-  {
-    title: "Frontend React Development",
-    institution: "Universidad Tecnológica Nacional (UTN)",
-    date: "2024",
-    icon: <Award className="w-8 h-8 text-secondary-foreground" />,
-    skills: ["React.js", "State Management", "Component Architecture", "Hooks", "Performance"],
-    status: "Completed",
-  }
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function CertificationsTitles() {
+  const { t } = useLanguage();
+
+  const certifications = [
+    {
+      title: "Backend Development Specialization",
+      institution: "Universidad Tecnológica Nacional (UTN)",
+      date: "2024 - 2025",
+      icon: <GraduationCap className="w-8 h-8 text-primary" />,
+      skills: ["Node.js Architecture", "MongoDB", "Express", "API Security", "Design Patterns"],
+      status: t.certifications.completed,
+    },
+    {
+      title: "Frontend React Development",
+      institution: "Universidad Tecnológica Nacional (UTN)",
+      date: "2024",
+      icon: <Award className="w-8 h-8 text-secondary-foreground" />,
+      skills: ["React.js", "State Management", "Component Architecture", "Hooks", "Performance"],
+      status: t.certifications.completed,
+    }
+  ];
+
   return (
     <section id="certifications" className="py-32 relative overflow-hidden">
       {/* Background decoration */}
@@ -28,10 +31,10 @@ export function CertificationsTitles() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-            Academic <span className="text-primary">Excellence</span>
+            {t.certifications.title_1} <span className="text-primary">{t.certifications.title_2}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Formal education and specialized certifications backing practical technical skills.
+            {t.certifications.subtitle}
           </p>
         </div>
 
