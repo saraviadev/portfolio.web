@@ -34,7 +34,7 @@ export function Navbar() {
           <Link href="https://linkedin.com/in/theo-saravia-239688364/" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
             <FaLinkedin className="w-5 h-5" />
           </Link>
-          <Link href="https://instagram.com/saravia.dev" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
+          <Link href="https://instagram.com/saravia.devv" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
             <FaInstagram className="w-5 h-5" />
           </Link>
           <button 
@@ -43,7 +43,7 @@ export function Navbar() {
           >
             {language.toUpperCase()}
           </button>
-          <Link href="mailto:46theosaravia46@gmail.com" className="hidden md:flex items-center space-x-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full text-sm font-medium transition-all">
+          <Link href="#contact" className="hidden md:flex items-center space-x-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full text-sm font-medium transition-all">
             <Mail className="w-4 h-4" />
             <span>{t.nav.contact}</span>
           </Link>
