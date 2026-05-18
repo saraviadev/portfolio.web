@@ -1,3 +1,5 @@
+"use client";
+
 import { Server, Database, Shield } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";

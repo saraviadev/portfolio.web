@@ -1,3 +1,5 @@
+"use client";
+
 import { Database, Layout, Server, Settings, ShieldAlert, Cpu } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 

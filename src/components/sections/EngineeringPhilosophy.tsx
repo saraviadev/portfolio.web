@@ -1,3 +1,5 @@
+"use client";
+
 import { Layers, Zap, Cpu, Code } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 

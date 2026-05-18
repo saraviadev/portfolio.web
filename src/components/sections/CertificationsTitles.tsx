@@ -1,3 +1,5 @@
+"use client";
+
 import { Award, GraduationCap, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
