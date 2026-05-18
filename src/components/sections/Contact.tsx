@@ -1,20 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { Mail, Check } from "lucide-react";
+import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function Contact() {
   const { t } = useLanguage();
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("46theosaravia46@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <section id="contact" className="py-32 relative">
@@ -35,22 +27,15 @@ export function Contact() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
             <div className="flex flex-col gap-4 w-full sm:w-auto">
-              <button 
-                onClick={handleCopyEmail}
-                className="h-14 px-8 w-full sm:w-auto rounded-full bg-primary/10 border border-primary/20 text-primary font-medium flex items-center justify-center space-x-3 hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer"
+              <Link 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=46theosaravia46@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-14 px-8 w-full sm:w-auto rounded-full bg-primary/10 border border-primary/20 text-primary font-medium flex items-center justify-center space-x-3 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                {copied ? (
-                  <>
-                    <Check className="w-5 h-5 text-green-400 animate-bounce" />
-                    <span className="font-mono text-sm text-green-400">¡Email Copiado!</span>
-                  </>
-                ) : (
-                  <>
-                    <Mail className="w-5 h-5" />
-                    <span className="font-mono text-sm">46theosaravia46@gmail.com</span>
-                  </>
-                )}
-              </button>
+                <Mail className="w-5 h-5" />
+                <span className="font-mono text-sm">46theosaravia46@gmail.com</span>
+              </Link>
               <Link 
                 href="https://wa.me/5491127537746"
                 target="_blank"

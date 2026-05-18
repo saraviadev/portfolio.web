@@ -87,7 +87,7 @@ export const translations = {
     contact: {
       title_1: "Let's build something",
       title_2: "extraordinary.",
-      subtitle: "Currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
+      subtitle: "Interested in working together or proposing a project? Feel free to reach out via email or WhatsApp. I'll get back to you as soon as possible.",
       button: "Say Hello"
     },
     modal: {
@@ -182,7 +182,7 @@ export const translations = {
     contact: {
       title_1: "Construyamos algo",
       title_2: "extraordinario.",
-      subtitle: "Actualmente abierto a nuevas oportunidades. Ya sea que tengas una pregunta o solo quieras saludar, haré lo posible por responderte.",
+      subtitle: "¿Interesado en trabajar conmigo o proponerme un proyecto? Hablemos por correo o por WhatsApp. Te responderé a la brevedad.",
       button: "Decir Hola"
     },
     modal: {
