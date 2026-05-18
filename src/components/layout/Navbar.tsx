@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, Terminal } from "lucide-react";
+import { Mail, Terminal } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export function Navbar() {
   return (
@@ -23,10 +24,10 @@ export function Navbar() {
 
         <div className="flex items-center space-x-4">
           <Link href="https://github.com/46theosaravia46-cyber" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
-            <Github className="w-5 h-5" />
+            <FaGithub className="w-5 h-5" />
           </Link>
           <Link href="https://linkedin.com/in/tu-perfil" target="_blank" className="text-muted-foreground hover:text-white transition-colors">
-            <Linkedin className="w-5 h-5" />
+            <FaLinkedin className="w-5 h-5" />
           </Link>
           <Link href="mailto:46theosaravia46@gmail.com" className="hidden md:flex items-center space-x-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full text-sm font-medium transition-all">
             <Mail className="w-4 h-4" />

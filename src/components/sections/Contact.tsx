@@ -1,4 +1,5 @@
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 
 export function Contact() {
@@ -34,14 +35,14 @@ export function Contact() {
                 target="_blank"
                 className="h-14 w-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
               >
-                <Github className="w-5 h-5" />
+                <FaGithub className="w-5 h-5" />
               </Link>
               <Link 
                 href="https://linkedin.com/in/tu-perfil"
                 target="_blank"
                 className="h-14 w-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
               >
-                <Linkedin className="w-5 h-5" />
+                <FaLinkedin className="w-5 h-5" />
               </Link>
             </div>
           </div>
