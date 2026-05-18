@@ -1,0 +1,74 @@
+import { Award, GraduationCap, CheckCircle2 } from "lucide-react";
+
+const certifications = [
+  {
+    title: "Backend Development Specialization",
+    institution: "Universidad Tecnológica Nacional (UTN)",
+    date: "2024 - 2025",
+    icon: <GraduationCap className="w-8 h-8 text-primary" />,
+    skills: ["Node.js Architecture", "MongoDB", "Express", "API Security", "Design Patterns"],
+    status: "Completed",
+  },
+  {
+    title: "Frontend React Development",
+    institution: "Universidad Tecnológica Nacional (UTN)",
+    date: "2024",
+    icon: <Award className="w-8 h-8 text-secondary-foreground" />,
+    skills: ["React.js", "State Management", "Component Architecture", "Hooks", "Performance"],
+    status: "Completed",
+  }
+];
+
+export function CertificationsTitles() {
+  return (
+    <section id="certifications" className="py-32 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+            Academic <span className="text-primary">Excellence</span>
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            Formal education and specialized certifications backing practical technical skills.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-8 max-w-4xl mx-auto">
+          {certifications.map((cert, index) => (
+            <div 
+              key={index} 
+              className="group glass p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8 hover:bg-white/[0.03] transition-colors border border-white/5 hover:border-primary/20"
+            >
+              <div className="flex items-start gap-6">
+                <div className="mt-1 p-4 bg-background rounded-2xl border border-white/5 group-hover:border-primary/30 transition-colors">
+                  {cert.icon}
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-xl md:text-2xl font-bold">{cert.title}</h3>
+                    <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold flex items-center gap-1 border border-primary/20">
+                      <CheckCircle2 className="w-3 h-3" />
+                      {cert.status}
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground font-medium mb-1">{cert.institution}</p>
+                  <p className="text-sm text-muted-foreground/70 mb-4">{cert.date}</p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {cert.skills.map((skill) => (
+                      <span key={skill} className="text-xs font-medium bg-white/5 px-3 py-1 rounded-full text-muted-foreground">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
