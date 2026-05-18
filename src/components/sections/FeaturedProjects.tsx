@@ -12,17 +12,17 @@ export function FeaturedProjects() {
     {
       ...t.projects.items[0],
       icon: <Server className="w-6 h-6 text-primary" />,
-      github: "https://github.com/46theosaravia46-cyber",
+      github: "https://github.com/46theosaravia46-cyber/ecommerce-api-utn",
     },
     {
       ...t.projects.items[1],
       icon: <Shield className="w-6 h-6 text-primary" />,
-      github: "https://github.com/46theosaravia46-cyber",
+      github: "https://github.com/46theosaravia46-cyber/identity-provider-service",
     },
     {
       ...t.projects.items[2],
       icon: <Database className="w-6 h-6 text-primary" />,
-      github: "https://github.com/46theosaravia46-cyber",
+      github: "https://github.com/46theosaravia46-cyber/high-frequency-data-aggregator",
     }
   ];
 
