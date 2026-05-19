@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { BackgroundAnimation } from "@/components/ui/BackgroundAnimation";
 import { LanguagePromptModal } from "@/components/sections/LanguagePromptModal";
+import { FloatingContact } from "@/components/ui/FloatingContact";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <BackgroundAnimation />
         <LanguageProvider>
           <LanguagePromptModal />
+          <FloatingContact />
           <div className="flex min-h-screen flex-col relative overflow-x-hidden">
             <Navbar />
             <main className="flex-1">{children}</main>
