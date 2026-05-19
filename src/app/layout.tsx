@@ -10,7 +10,7 @@ import { LanguagePromptModal } from "@/components/sections/LanguagePromptModal";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Theo Saravia | Next-Gen Fullstack Developer",
+  title: "saravia.dev | Portfolio",
   description: "Portfolio of Theo Saravia, specializing in Modern Web Architecture, Next.js, Node.js, and AI Automation.",
 };
 
