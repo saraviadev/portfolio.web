@@ -69,7 +69,7 @@ export function Navbar() {
 
       {/* Mobile Menu Drawer Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 z-50 bg-[#090b11]/98 backdrop-blur-xl flex flex-col justify-between p-6 border-t border-white/5 animate-in fade-in slide-in-from-top duration-200">
+        <div className="md:hidden fixed inset-0 top-16 z-50 flex flex-col justify-between p-6 border-t border-white/5 animate-in fade-in slide-in-from-top duration-200" style={{ backgroundColor: 'rgba(9, 11, 17, 0.98)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
           <nav className="flex flex-col space-y-6 text-lg font-medium mt-6">
             <Link 
               href="#projects" 
