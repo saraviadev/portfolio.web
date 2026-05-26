@@ -7,6 +7,8 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { BackgroundAnimation } from "@/components/ui/BackgroundAnimation";
 import { LanguagePromptModal } from "@/components/sections/LanguagePromptModal";
 import { FloatingContact } from "@/components/ui/FloatingContact";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,11 +29,14 @@ export default function RootLayout({
         <LanguageProvider>
           <LanguagePromptModal />
           <FloatingContact />
-          <div className="flex min-h-screen flex-col relative overflow-x-hidden">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <SmoothScroll>
+            <CustomCursor />
+            <div className="flex min-h-screen flex-col relative overflow-x-hidden">
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </SmoothScroll>
         </LanguageProvider>
       </body>
     </html>
