@@ -17,7 +17,7 @@ export function AboutSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0, active: false });
 
-  // 1. Particle Neural-Net Background Animation
+  // 1. Particle Neural-Net Background Animation (High-Visibility & Robust Resize)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -28,28 +28,41 @@ export function AboutSection() {
     let animationFrameId: number;
     let particles: Particle[] = [];
     const particleCount = 45;
-    const connectionDistance = 110;
+    const connectionDistance = 115;
 
-    const resizeCanvas = () => {
-      if (canvas && containerRef.current) {
-        canvas.width = containerRef.current.clientWidth;
-        canvas.height = containerRef.current.clientHeight;
+    // Use a standard ResizeObserver to prevent height-0 layout race conditions on mount
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry) {
+        const width = entry.contentRect.width || canvas.parentElement?.clientWidth || window.innerWidth;
+        const height = entry.contentRect.height || canvas.parentElement?.clientHeight || 550;
+        
+        canvas.width = width;
+        canvas.height = height;
+
+        // Re-initialize or adjust particles if they are out of the new boundaries
+        if (particles.length === 0) {
+          for (let i = 0; i < particleCount; i++) {
+            particles.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: (Math.random() - 0.5) * 0.35,
+              vy: (Math.random() - 0.5) * 0.35,
+              radius: Math.random() * 1.8 + 1.2, // Slightly larger particles
+            });
+          }
+        } else {
+          // Keep existing particles inside active bounds
+          particles.forEach(p => {
+            if (p.x > width) p.x = Math.random() * width;
+            if (p.y > height) p.y = Math.random() * height;
+          });
+        }
       }
-    };
+    });
 
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    // Initialize particles
-    particles = [];
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        radius: Math.random() * 1.5 + 1,
-      });
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
     }
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -75,7 +88,7 @@ export function AboutSection() {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw particles
+      // Update and draw particles (Emerald Green solarpunk accents)
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -97,7 +110,7 @@ export function AboutSection() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(59, 130, 246, 0.3)";
+        ctx.fillStyle = "rgba(16, 185, 129, 0.65)"; // Bright Solarpunk Emerald Green
         ctx.fill();
       });
 
@@ -109,12 +122,12 @@ export function AboutSection() {
           const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
 
           if (dist < connectionDistance) {
-            const alpha = (1 - dist / connectionDistance) * 0.15;
+            const alpha = (1 - dist / connectionDistance) * 0.35; // Increased line visibility
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
+            ctx.lineWidth = 0.55;
             ctx.stroke();
           }
         }
@@ -126,7 +139,7 @@ export function AboutSection() {
     animate();
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      resizeObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
       if (container) {
         container.removeEventListener("mousemove", handleMouseMove);
@@ -177,7 +190,7 @@ export function AboutSection() {
       {/* Premium Neural Net Canvas Background */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 z-0 pointer-events-none opacity-40"
+        className="absolute inset-0 z-0 pointer-events-none opacity-85"
       />
 
       <div className="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
