@@ -31,11 +31,11 @@ export function Preloader() {
   return (
     <div className={`preloader ${loaded ? "loaded" : ""}`}>
       <div className={`preloader-content transition-all duration-700 ${showLanguageSelect ? "-translate-y-10" : ""}`}>
-        <div className="preloader-logo tracking-widest">
+        <div className="preloader-logo tracking-widest text-center">
           S R V
         </div>
         {!showLanguageSelect && (
-          <div className="preloader-progress mt-4">
+          <div className="preloader-progress mt-4 mx-auto">
             <div className="preloader-bar" />
           </div>
         )}

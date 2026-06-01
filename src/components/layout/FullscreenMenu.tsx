@@ -93,6 +93,11 @@ export function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
             className="absolute inset-0 bg-[#020202]"
             variants={bgVariants}
           >
+            {/* Background Image of Gantz Smooth */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center opacity-[0.05] pointer-events-none mix-blend-screen scale-105"
+              style={{ backgroundImage: "url('/srv_gantz_smooth.png')" }}
+            />
             <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full blur-[150px] bg-primary/10 pointer-events-none opacity-50" />
             <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full blur-[150px] bg-purple-600/10 pointer-events-none opacity-50" />
             
@@ -115,7 +120,7 @@ export function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
                 const isOtherHovered = hoveredLink !== null && hoveredLink !== link.href;
 
                 return (
-                  <div key={link.href} className="overflow-hidden">
+                  <div key={link.href} className="overflow-hidden py-2 pr-4">
                     <motion.div variants={linkVariants}>
                       <Link
                         href={link.href}

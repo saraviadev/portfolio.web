@@ -2,16 +2,343 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// Real project code files mapped to each active section!
+const CODE_SNIPPETS: Record<string, { plain: string; colored: React.ReactNode }> = {
+  hero: {
+    plain: `"use client";
+import { useLanguage } from "@/context/LanguageContext";
+import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
+
+export function HeroSection() {
+  const { t, language } = useLanguage();
+  return (
+    <section className="hero-cinematic" id="hero">
+      <div className="hero-overlay" />
+      <div className="relative z-10 w-full px-6 md:px-12">
+        <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+        <h1 className="section-title-cinema leading-[1.1]">
+          <span>{language === "en" ? "Building " : "Creamos "}</span>
+        </h1>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br />
+        <span className="text-purple-400">import</span> <span className="text-blue-300">Link</span> <span className="text-purple-400">from</span> <span className="text-green-300">"next/link"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">FaWhatsapp</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"react-icons/fa"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">HeroSection</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span>, <span className="text-blue-300">language</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"hero-cinematic"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"hero"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"hero-overlay"</span> /&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"relative z-10 w-full"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">span</span> <span className="text-red-400">className</span>=<span className="text-green-300">"flex h-2 w-2 bg-green-400 animate-pulse"</span> /&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h1</span> <span className="text-red-400">className</span>=<span className="text-green-300">"section-title-cinema"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">span</span>&gt;&#123;language === <span className="text-green-300">"en"</span> ? <span className="text-green-300">"Building "</span> : <span className="text-green-300">"Creamos "</span>&#125;&lt;/<span className="text-blue-400">span</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">h1</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp;);<br />
+        &#125;
+      </>
+    )
+  },
+  about: {
+    plain: `"use client";
+import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+
+export function AboutSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="relative py-24 bg-black overflow-hidden" id="about">
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="text-xs font-mono tracking-widest text-primary">
+          {t.about.title}
+        </h2>
+        <p className="text-xl md:text-3xl font-light text-white/95 mt-8">
+          {t.about.text}
+        </p>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">motion</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"framer-motion"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">AboutSection</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"relative py-24"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"about"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-5xl mx-auto"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span> <span className="text-red-400">className</span>=<span className="text-green-300">"text-xs font-mono text-primary"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.about.title&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">h2</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">p</span> <span className="text-red-400">className</span>=<span className="text-green-300">"text-xl md:text-3xl font-light text-white"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.about.text&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">p</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp);<br />
+        &#125;
+      </>
+    )
+  },
+  services: {
+    plain: `"use client";
+import { useLanguage } from "@/context/LanguageContext";
+
+export function ServicesSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="py-24 bg-[#0a0a0c]" id="services">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="service-card-premium">
+            <span className="s-num">01</span>
+            <h3>Frontend Premium</h3>
+            <p>React, Next.js, and smooth anims.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">ServicesSection</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"py-24 bg-[#0a0a0c]"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"services"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-7xl mx-auto"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"grid grid-cols-1 md:grid-cols-3 gap-8"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"service-card-premium"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">span</span> <span className="text-red-400">className</span>=<span className="text-green-300">"s-num"</span>&gt;<span className="text-red-300">01</span>&lt;/<span className="text-blue-400">span</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h3</span>&gt;Frontend Premium&lt;/<span className="text-blue-400">h3</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">p</span>&gt;React, Next.js, and smooth anims.&lt;/<span className="text-blue-400">p</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp);<br />
+        &#125;
+      </>
+    )
+  },
+  projects: {
+    plain: `"use client";
+import { useLanguage } from "@/context/LanguageContext";
+
+export function FeaturedProjects() {
+  const { t } = useLanguage();
+  return (
+    <section className="py-24 bg-black border-t border-white/[0.04]" id="projects">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl font-bold tracking-tight text-white mb-16">
+          {t.projects.title}
+        </h2>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">FeaturedProjects</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"py-24 bg-black"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"projects"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-7xl mx-auto"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span> <span className="text-red-400">className</span>=<span className="text-green-300">"text-3xl font-bold"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.projects.title&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">h2</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp);<br />
+        &#125;
+      </>
+    )
+  },
+  workflow: {
+    plain: `"use client";
+import { useLanguage } from "@/context/LanguageContext";
+
+export function WorkflowSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="py-24 bg-[#050508]" id="workflow">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-xs font-mono tracking-widest text-primary uppercase">
+          {t.workflow.subtitle}
+        </h2>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">WorkflowSection</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"py-24 bg-[#050508]"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"workflow"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-7xl mx-auto"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span> <span className="text-red-400">className</span>=<span className="text-green-300">"text-xs font-mono text-primary"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.workflow.subtitle&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">h2</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp);<br />
+        &#125;
+      </>
+    )
+  },
+  skills: {
+    plain: `"use client";
+import { useLanguage } from "@/context/LanguageContext";
+
+export function SkillsSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="py-24 bg-black" id="skills">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-4xl font-bold tracking-tight text-white mb-4">
+          {t.skills.title}
+        </h2>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">SkillsSection</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"py-24 bg-black"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"skills"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-7xl mx-auto"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span> <span className="text-red-400">className</span>=<span className="text-green-300">"text-4xl font-bold"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.skills.title&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">h2</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp);<br />
+        &#125;
+      </>
+    )
+  },
+  philosophy: {
+    plain: `"use client";
+import { useLanguage } from "@/context/LanguageContext";
+
+export function EngineeringPhilosophy() {
+  const { t } = useLanguage();
+  return (
+    <section className="py-24 bg-[#060609]" id="philosophy">
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="text-xs font-mono tracking-widest text-primary uppercase">
+          {t.philosophy.title}
+        </h2>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">EngineeringPhilosophy</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"py-24 bg-[#060609]"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"philosophy"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-5xl mx-auto"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span> <span className="text-red-400">className</span>=<span className="text-green-300">"text-xs font-mono text-primary"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.philosophy.title&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">h2</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp);<br />
+        &#125;
+      </>
+    )
+  },
+  contact: {
+    plain: `"use client";
+import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+
+export function Contact() {
+  const { t } = useLanguage();
+  return (
+    <section className="py-24 bg-black" id="contact">
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        <h2>{t.contact.title}</h2>
+      </div>
+    </section>
+  );
+}`,
+    colored: (
+      <>
+        <span className="text-purple-400">"use client"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useState</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"react"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">Contact</span>() &#123;<br />
+        &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
+        &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"py-24 bg-black"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"contact"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-5xl mx-auto text-center"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span>&gt;&#123;t.contact.title&#125;&lt;/<span className="text-blue-400">h2</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
+        &nbsp;&nbsp);<br />
+        &#125;
+      </>
+    )
+  }
+};
+
 export function CodeSpotlightBg() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Section Observer logic to dynamically detect which section is currently active
   useEffect(() => {
     if (!mounted) return;
+
+    const sections = ["hero", "about", "services", "projects", "workflow", "skills", "philosophy", "contact"];
+    
+    const observers = sections.map(id => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setActiveSection(id);
+        }
+      }, {
+        threshold: 0.15, // Trigger when 15% of the section is visible
+        rootMargin: "-15% 0px -40% 0px" // Shift center slightly up to detect earlier
+      });
+
+      observer.observe(el);
+      return { observer, el };
+    });
 
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
@@ -27,118 +354,35 @@ export function CodeSpotlightBg() {
     }
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      observers.forEach(obs => {
+        if (obs) obs.observer.unobserve(obs.el);
+      });
+    };
   }, [mounted]);
 
   if (!mounted) return null;
 
-  // Real code snippets from this project to make it authentic!
-  const codeSnippet1 = `import type { Metadata } from "next";
-import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-
-export const metadata: Metadata = {
-  title: "SRV | Fullstack Developer Portfolio",
-  description: "Fullstack Developer specializing in Modern Web Architecture, Next.js, Node.js & AI",
-  authors: [{ name: "Theo Saravia" }],
-};
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="es" className="dark">
-      <body className="font-sans antialiased bg-black text-neutral-200">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
-}`;
-
-  const codeSnippet2 = `"use client";
-
-import { useEffect, useRef } from "react";
-
-export function CodeSpotlightBg() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current) {
-        containerRef.current.style.setProperty("--mouse-x", \`\${e.clientX}px\`);
-        containerRef.current.style.setProperty("--mouse-y", \`\${e.clientY}px\`);
-      }
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-}`;
-
-  const codeSnippet3 = `const express = require('express');
-const router = express.Router();
-const Order = require('../models/Order');
-const Product = require('../models/product');
-
-router.post('/create-preference', async (req, res) => {
-  try {
-    const { orderId } = req.body;
-    const order = await Order.findById(orderId);
-    
-    if (!order) return res.status(404).json({ message: 'Order not found' });
-    
-    // Verify stock before sending to payment gateway
-    for (const item of order.products) {
-      const productDB = await Product.findById(item.productId);
-      if (productDB.stock < item.quantity) {
-        return res.status(400).json({ message: 'Insufficient stock' });
-      }
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});`;
-
-  const codeSnippet4 = `import { createContext, useContext, useState } from 'react';
-
-const CartContext = createContext(null);
-
-export function CartProvider({ children }) {
-  const [items, setItems] = useState([]);
-
-  const addItem = (product, size, qty = 1) => {
-    setItems(prev => {
-      const exists = prev.find(i => i._id === product._id && i.size === size);
-      if (exists) {
-        return prev.map(i => i._id === product._id && i.size === size ? { ...i, qty: i.qty + qty } : i);
-      }
-      return [...prev, { ...product, size, qty }];
-    });
-  };
-}`;
+  const currentSnippet = CODE_SNIPPETS[activeSection] || CODE_SNIPPETS.hero;
 
   return (
     <div 
       ref={containerRef}
       className="fixed inset-0 z-[-1] overflow-hidden bg-[#020204] select-none pointer-events-none"
     >
-      {/* Code Text Background container with faint colors */}
-      <div className="absolute inset-0 flex flex-wrap gap-12 p-8 opacity-[0.05] blur-[2px] scale-105 font-mono text-[0.65rem] leading-relaxed select-none transition-opacity duration-700">
-        <div className="w-[45%] min-w-[320px] text-neutral-400 overflow-hidden h-[45vh]">
-          <pre><code className="language-typescript">{codeSnippet1}</code></pre>
-        </div>
-        <div className="w-[45%] min-w-[320px] text-neutral-400 overflow-hidden h-[45vh]">
-          <pre><code className="language-typescript">{codeSnippet2}</code></pre>
-        </div>
-        <div className="w-[45%] min-w-[320px] text-neutral-400 overflow-hidden h-[45vh]">
-          <pre><code className="language-javascript">{codeSnippet3}</code></pre>
-        </div>
-        <div className="w-[45%] min-w-[320px] text-neutral-400 overflow-hidden h-[45vh]">
-          <pre><code className="language-javascript">{codeSnippet4}</code></pre>
+      {/* Code Text Background container with faint, blurred, mono color styling */}
+      <div 
+        key={`plain-${activeSection}`} 
+        className="absolute inset-0 flex flex-wrap gap-12 p-8 opacity-[0.05] blur-[2.5px] scale-105 font-mono text-[0.65rem] leading-relaxed select-none transition-opacity duration-1000 ease-in-out"
+      >
+        <div className="w-[85%] max-w-[800px] text-neutral-400 overflow-hidden h-[85vh] pl-12 pt-16">
+          <pre><code>{currentSnippet.plain}</code></pre>
         </div>
       </div>
 
-      {/* Spotlight Overlay */}
+      {/* Spotlight Mask Layer */}
       <div 
         className="absolute inset-0"
         style={{
@@ -146,109 +390,19 @@ export function CartProvider({ children }) {
         }}
       />
 
-      {/* Spotlight revealed colored code (high opacity, blur-none, and masked to only show near the mouse) */}
+      {/* Spotlight revealed colored code (masked locally to the mouse cursor area, zero blur) */}
       <div 
-        className="absolute inset-0 flex flex-wrap gap-12 p-8 font-mono text-[0.65rem] leading-relaxed select-none pointer-events-none"
+        key={`colored-${activeSection}`}
+        className="absolute inset-0 flex flex-wrap gap-12 p-8 font-mono text-[0.65rem] leading-relaxed select-none pointer-events-none transition-opacity duration-1000 ease-in-out"
         style={{
           maskImage: "radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 40%, transparent 95%)",
           WebkitMaskImage: "radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 40%, transparent 95%)",
         }}
       >
-        <div className="w-[45%] min-w-[320px] text-blue-400/90 overflow-hidden h-[45vh]">
+        <div className="w-[85%] max-w-[800px] text-blue-400/90 overflow-hidden h-[85vh] pl-12 pt-16">
           <pre>
             <code>
-              <span className="text-purple-400">import</span> type &#123; <span className="text-yellow-300">Metadata</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"next"</span>;<br />
-              <span className="text-purple-400">import</span> <span className="text-green-300">"./globals.css"</span>;<br />
-              <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">Navbar</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/components/layout/Navbar"</span>;<br />
-              <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">Footer</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/components/layout/Footer"</span>;<br /><br />
-              <span className="text-purple-400">export const</span> <span className="text-blue-300">metadata</span>: <span className="text-yellow-300">Metadata</span> = &#123;<br />
-              &nbsp;&nbsp;title: <span className="text-green-300">"SRV | Fullstack Developer Portfolio"</span>,<br />
-              &nbsp;&nbsp;description: <span className="text-green-300">"Fullstack Developer specializing in Modern Web Architecture, Next.js, Node.js & AI"</span>,<br />
-              &nbsp;&nbsp;authors: [&#123; name: <span className="text-green-300">"Theo Saravia"</span> &#125;],<br />
-              &#125;;<br /><br />
-              <span className="text-purple-400">export default function</span> <span className="text-yellow-300">RootLayout</span>(&#123; <span className="text-red-300">children</span> &#125;) &#123;<br />
-              &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">html</span> <span className="text-red-400">lang</span>=<span className="text-green-300">"es"</span> <span className="text-red-400">className</span>=<span className="text-green-300">"dark"</span>&gt;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">body</span> <span className="text-red-400">className</span>=<span className="text-green-300">"font-sans antialiased bg-black text-neutral-200"</span>&gt;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">Navbar</span> /&gt;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">main</span> <span className="text-red-400">className</span>=<span className="text-green-300">"flex-1"</span>&gt;&#123children&#125;&lt;/<span className="text-blue-400">main</span>&gt;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">Footer</span> /&gt;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">body</span>&gt;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">html</span>&gt;<br />
-              &nbsp;&nbsp;);<br />
-              &#125;
-            </code>
-          </pre>
-        </div>
-
-        <div className="w-[45%] min-w-[320px] text-blue-400/90 overflow-hidden h-[45vh]">
-          <pre>
-            <code>
-              <span className="text-green-400">// Client component for interactive experience</span><br />
-              <span className="text-green-300">"use client"</span>;<br /><br />
-              <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useEffect</span>, <span className="text-blue-300">useRef</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"react"</span>;<br /><br />
-              <span className="text-purple-400">export function</span> <span className="text-yellow-300">CodeSpotlightBg</span>() &#123;<br />
-              &nbsp;&nbsp;<span className="text-purple-400">const</span> <span className="text-blue-300">containerRef</span> = <span className="text-yellow-300">useRef</span>&lt;<span className="text-yellow-300">HTMLDivElement</span>&gt;(<span className="text-purple-400">null</span>);<br /><br />
-              &nbsp;&nbsp;<span className="text-yellow-300">useEffect</span>(() <span className="text-purple-400">=&gt;</span> &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">const</span> <span className="text-yellow-300">handleMouseMove</span> = (<span className="text-red-300">e</span>: <span className="text-yellow-300">MouseEvent</span>) <span className="text-purple-400">=&gt;</span> &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> (containerRef.current) &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerRef.current.style.setProperty(<span className="text-green-300">"--mouse-x"</span>, <span className="text-green-300">{"`\\${e.clientX}px`"}</span>);<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerRef.current.style.setProperty(<span className="text-green-300">"--mouse-y"</span>, <span className="text-green-300">{"`\\${e.clientY}px`"}</span>);<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&#125;;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;window.addEventListener(<span className="text-green-300">"mousemove"</span>, handleMouseMove);<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> () <span className="text-purple-400">=&gt;</span> window.removeEventListener(<span className="text-green-300">"mousemove"</span>, handleMouseMove);<br />
-              &nbsp;&nbsp;&#125;, []);<br />
-              &#125;
-            </code>
-          </pre>
-        </div>
-
-        <div className="w-[45%] min-w-[320px] text-blue-400/90 overflow-hidden h-[45vh]">
-          <pre>
-            <code>
-              <span className="text-green-400">// Backend order check routing (Looser Fit)</span><br />
-              <span className="text-purple-400">const</span> <span className="text-blue-300">express</span> = require(<span className="text-green-300">'express'</span>);<br />
-              <span className="text-purple-400">const</span> <span className="text-blue-300">router</span> = express.Router();<br />
-              <span className="text-purple-400">const</span> <span className="text-blue-300">Order</span> = require(<span className="text-green-300">'../models/Order'</span>);<br />
-              <span className="text-purple-400">const</span> <span className="text-blue-300">Product</span> = require(<span className="text-green-300">'../models/product'</span>);<br /><br />
-              router.post(<span className="text-green-300">'/create-preference'</span>, <span className="text-purple-400">async</span> (req, res) <span className="text-purple-400">=&gt;</span> &#123;<br />
-              &nbsp;&nbsp;<span className="text-purple-400">try</span> &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; orderId &#125; = req.body;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">const</span> order = <span className="text-purple-400">await</span> Order.findById(orderId);<br /><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> (!order) <span className="text-purple-400">return</span> res.status(<span className="text-red-300">404</span>).json(&#123; message: <span className="text-green-300">'Order not found'</span> &#125;);<br /><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">for</span> (<span className="text-purple-400">const</span> item <span className="text-purple-400">of</span> order.products) &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">const</span> productDB = <span className="text-purple-400">await</span> Product.findById(item.productId);<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> (productDB.stock &lt; item.quantity) &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> res.status(<span className="text-red-300">400</span>).json(&#123; message: <span className="text-green-300">'Insufficient stock'</span> &#125;);<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
-              &nbsp;&nbsp;&#125; <span className="text-purple-400">catch</span> (error) &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;res.status(<span className="text-red-300">500</span>).json(&#123; message: error.message &#125;);<br />
-              &nbsp;&nbsp;&#125;<br />
-              &#125;);
-            </code>
-          </pre>
-        </div>
-
-        <div className="w-[45%] min-w-[320px] text-blue-400/90 overflow-hidden h-[45vh]">
-          <pre>
-            <code>
-              <span className="text-green-400">// React state-based cart context manager (Looser Fit)</span><br />
-              <span className="text-purple-400">import</span> &#123; createContext, useContext, useState &#125; <span className="text-purple-400">from</span> <span className="text-green-300">'react'</span>;<br /><br />
-              <span className="text-purple-400">const</span> <span className="text-blue-300">CartContext</span> = <span className="text-yellow-300">createContext</span>(<span className="text-purple-400">null</span>);<br /><br />
-              <span className="text-purple-400">export function</span> <span className="text-yellow-300">CartProvider</span>(&#123; <span className="text-red-300">children</span> &#125;) &#123;<br />
-              &nbsp;&nbsp;<span className="text-purple-400">const</span> [items, setItems] = <span className="text-yellow-300">useState</span>([]);<br /><br />
-              &nbsp;&nbsp;<span className="text-purple-400">const</span> <span className="text-yellow-300">addItem</span> = (<span className="text-red-300">product, size, qty = 1</span>) <span className="text-purple-400">=&gt;</span> &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-300">setItems</span>(<span className="text-red-300">prev =&gt;</span> &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">const</span> exists = prev.find(<span className="text-red-300">i =&gt;</span> i._id === product._id && i.size === size);<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> (exists) &#123;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> prev.map(<span className="text-red-300">i =&gt;</span> i._id === product._id && i.size === size ? &#123; ...i, qty: i.qty + qty &#125; : i);<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> [...prev, &#123; ...product, size, qty &#125;];<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&#125;);<br />
-              &nbsp;&nbsp;&#125;;<br />
-              &#125;
+              {currentSnippet.colored}
             </code>
           </pre>
         </div>
