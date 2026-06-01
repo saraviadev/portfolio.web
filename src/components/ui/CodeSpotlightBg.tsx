@@ -310,6 +310,7 @@ export function CodeSpotlightBg() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [isHoveringText, setIsHoveringText] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -345,6 +346,20 @@ export function CodeSpotlightBg() {
       }
     };
 
+    // Text hover listener to hide spotlight when cursor is on readable text
+    const handleTextEnter = () => setIsHoveringText(true);
+    const handleTextLeave = () => setIsHoveringText(false);
+
+    const attachTextListeners = () => {
+      // Find all text blocks, cards, headings and standard buttons
+      document.querySelectorAll("p, h1, h2, h3, h4, h5, h6, li, a, button, .glass-card, .service-card-premium, .social-btn-fez").forEach(el => {
+        el.removeEventListener("mouseenter", handleTextEnter);
+        el.removeEventListener("mouseleave", handleTextLeave);
+        el.addEventListener("mouseenter", handleTextEnter);
+        el.addEventListener("mouseleave", handleTextLeave);
+      });
+    };
+
     // Initialize position in the center
     if (containerRef.current) {
       containerRef.current.style.setProperty("--mouse-x", "50%");
@@ -352,9 +367,15 @@ export function CodeSpotlightBg() {
     }
 
     window.addEventListener("mousemove", handleMouseMove);
+    attachTextListeners();
+
+    // Set up a MutationObserver to listen to new elements being dynamically rendered/swapped
+    const textObserver = new MutationObserver(attachTextListeners);
+    textObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      textObserver.disconnect();
       observers.forEach(obs => {
         if (obs) obs.observer.unobserve(obs.el);
       });
@@ -365,10 +386,16 @@ export function CodeSpotlightBg() {
 
   const currentSnippet = CODE_SNIPPETS[activeSection] || CODE_SNIPPETS.hero;
 
+  // Crucial: Spotlight code is only rendered from 'services' section downwards!
+  const isVisibleSection = ["services", "projects", "workflow", "stack", "philosophy", "contact"].includes(activeSection);
+
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-[-1] overflow-hidden bg-[#020204] select-none pointer-events-none"
+      className="fixed inset-0 z-[-1] overflow-hidden bg-[#020204] select-none pointer-events-none transition-opacity duration-1000 ease-in-out"
+      style={{
+        opacity: isVisibleSection ? 1 : 0,
+      }}
     >
       {/* Code Text Background container with faint, blurred, mono color styling */}
       <div 
@@ -391,8 +418,9 @@ export function CodeSpotlightBg() {
       {/* Spotlight revealed colored code (masked locally to the mouse cursor area, zero blur) */}
       <div 
         key={`colored-${activeSection}`}
-        className="absolute inset-0 flex flex-wrap gap-12 p-8 font-mono text-[0.65rem] leading-relaxed select-none pointer-events-none transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 flex flex-wrap gap-12 p-8 font-mono text-[0.65rem] leading-relaxed select-none pointer-events-none transition-all duration-500 ease-out"
         style={{
+          opacity: isHoveringText ? 0.05 : 1, // Smoothly dissolve when hovering text
           maskImage: "radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 40%, transparent 95%)",
           WebkitMaskImage: "radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 40%, transparent 95%)",
         }}
