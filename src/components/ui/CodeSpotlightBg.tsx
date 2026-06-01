@@ -310,7 +310,6 @@ export function CodeSpotlightBg() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const [isHoveringText, setIsHoveringText] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -346,20 +345,6 @@ export function CodeSpotlightBg() {
       }
     };
 
-    // Text hover listener to hide spotlight when cursor is on readable text
-    const handleTextEnter = () => setIsHoveringText(true);
-    const handleTextLeave = () => setIsHoveringText(false);
-
-    const attachTextListeners = () => {
-      // Find all text blocks, cards, headings and standard buttons
-      document.querySelectorAll("p, h1, h2, h3, h4, h5, h6, li, a, button, .glass-card, .service-card-premium, .social-btn-fez").forEach(el => {
-        el.removeEventListener("mouseenter", handleTextEnter);
-        el.removeEventListener("mouseleave", handleTextLeave);
-        el.addEventListener("mouseenter", handleTextEnter);
-        el.addEventListener("mouseleave", handleTextLeave);
-      });
-    };
-
     // Initialize position in the center
     if (containerRef.current) {
       containerRef.current.style.setProperty("--mouse-x", "50%");
@@ -367,15 +352,9 @@ export function CodeSpotlightBg() {
     }
 
     window.addEventListener("mousemove", handleMouseMove);
-    attachTextListeners();
-
-    // Set up a MutationObserver to listen to new elements being dynamically rendered/swapped
-    const textObserver = new MutationObserver(attachTextListeners);
-    textObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      textObserver.disconnect();
       observers.forEach(obs => {
         if (obs) obs.observer.unobserve(obs.el);
       });
@@ -418,14 +397,14 @@ export function CodeSpotlightBg() {
       {/* Spotlight revealed colored code (masked locally to the mouse cursor area, zero blur) */}
       <div 
         key={`colored-${activeSection}`}
-        className="absolute inset-0 flex flex-wrap gap-12 p-8 font-mono text-[0.65rem] leading-relaxed select-none pointer-events-none transition-all duration-500 ease-out"
+        className="absolute inset-0 flex flex-wrap gap-12 p-8 font-mono text-[0.65rem] leading-relaxed select-none pointer-events-none transition-opacity duration-500 ease-out"
         style={{
-          opacity: isHoveringText ? 0.05 : 1, // Smoothly dissolve when hovering text
+          opacity: 0.28, // Faint and elegant ambient glow that never interferes with text readability
           maskImage: "radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 40%, transparent 95%)",
           WebkitMaskImage: "radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 40%, transparent 95%)",
         }}
       >
-        <div className="w-[85%] max-w-[800px] text-blue-400/90 overflow-hidden h-[85vh] pl-12 pt-16">
+        <div className="w-[85%] max-w-[800px] text-blue-400 overflow-hidden h-[85vh] pl-12 pt-16">
           <pre>
             <code>
               {currentSnippet.colored}
