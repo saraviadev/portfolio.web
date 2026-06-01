@@ -107,7 +107,7 @@ export function FloatingAI() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-6 left-6 sm:bottom-8 sm:left-8 z-[100] w-[calc(100vw-3rem)] sm:w-[380px] h-[500px] max-h-[80vh] flex flex-col bg-[#050505] border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden glass-premium"
+            className="fixed bottom-6 left-6 sm:bottom-8 sm:left-8 z-[100] w-[calc(100vw-3rem)] sm:w-[380px] h-[500px] max-h-[80vh] flex flex-col bg-[#08080c] border border-white/[0.08] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.04] bg-white/[0.01]">
