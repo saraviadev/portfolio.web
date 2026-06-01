@@ -83,28 +83,50 @@ export function Contact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex items-center justify-center gap-4"
+          className="flex flex-wrap items-center justify-center gap-4 mt-6"
         >
           <Link
             href="https://github.com/saraviadev"
             target="_blank"
-            className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:bg-white/[0.08] hover:border-white/[0.15] transition-all hover-target"
+            className="social-btn-fez github hover-target"
           >
-            <FaGithub className="w-5 h-5 text-white/40" />
+            <div className="icon-wrapper">
+              <FaGithub className="w-5 h-5 text-white" />
+            </div>
+            <span className="social-text">GitHub</span>
           </Link>
+
           <Link
             href="https://www.linkedin.com/in/theo-saravia-239688364/"
             target="_blank"
-            className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:bg-white/[0.08] hover:border-white/[0.15] transition-all hover-target"
+            className="social-btn-fez linkedin hover-target"
           >
-            <FaLinkedin className="w-5 h-5 text-white/40" />
+            <div className="icon-wrapper">
+              <FaLinkedin className="w-5 h-5 text-white" />
+            </div>
+            <span className="social-text">LinkedIn</span>
           </Link>
+
           <Link
             href="https://instagram.com/saravia.devv"
             target="_blank"
-            className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:bg-white/[0.08] hover:border-white/[0.15] transition-all hover-target"
+            className="social-btn-fez instagram hover-target"
           >
-            <FaInstagram className="w-5 h-5 text-white/40" />
+            <div className="icon-wrapper">
+              <FaInstagram className="w-5 h-5 text-white" />
+            </div>
+            <span className="social-text">Instagram</span>
+          </Link>
+
+          <Link
+            href="https://wa.me/5491127537746"
+            target="_blank"
+            className="social-btn-fez whatsapp hover-target"
+          >
+            <div className="icon-wrapper">
+              <FaWhatsapp className="w-5 h-5 text-white" />
+            </div>
+            <span className="social-text">WhatsApp</span>
           </Link>
         </motion.div>
       </div>
