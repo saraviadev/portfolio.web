@@ -365,8 +365,8 @@ export function CodeSpotlightBg() {
 
   const currentSnippet = CODE_SNIPPETS[activeSection] || CODE_SNIPPETS.hero;
 
-  // Crucial: Spotlight code is only rendered from 'about' section downwards!
-  const isVisibleSection = ["about", "services", "projects", "workflow", "stack", "philosophy", "contact"].includes(activeSection);
+  // Crucial: Spotlight code is only rendered from 'services' section downwards!
+  const isVisibleSection = ["services", "projects", "workflow", "stack", "philosophy", "contact"].includes(activeSection);
 
   return (
     <div 
