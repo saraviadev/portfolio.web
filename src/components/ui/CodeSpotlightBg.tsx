@@ -203,35 +203,33 @@ export function WorkflowSection() {
       </>
     )
   },
-  skills: {
+  stack: {
     plain: `"use client";
 import { useLanguage } from "@/context/LanguageContext";
+import { Database, Layout, Server, Settings, Cpu } from "lucide-react";
 
-export function SkillsSection() {
+export function TechStack() {
   const { t } = useLanguage();
   return (
-    <section className="py-24 bg-black" id="skills">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold tracking-tight text-white mb-4">
-          {t.skills.title}
-        </h2>
-      </div>
+    <section id="stack" className="section-padding relative">
+      <h2 className="section-title-cinema">
+        {t.stack.title_1} <span>{t.stack.title_2}</span>
+      </h2>
     </section>
   );
 }`,
     colored: (
       <>
         <span className="text-purple-400">"use client"</span>;<br />
-        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br /><br />
-        <span className="text-purple-400">export function</span> <span className="text-yellow-300">SkillsSection</span>() &#123;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">useLanguage</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"@/context/LanguageContext"</span>;<br />
+        <span className="text-purple-400">import</span> &#123; <span className="text-blue-300">Server</span>, <span className="text-blue-300">Database</span>, <span className="text-blue-300">Layout</span> &#125; <span className="text-purple-400">from</span> <span className="text-green-300">"lucide-react"</span>;<br /><br />
+        <span className="text-purple-400">export function</span> <span className="text-yellow-300">TechStack</span>() &#123;<br />
         &nbsp;&nbsp;<span className="text-purple-400">const</span> &#123; <span className="text-blue-300">t</span> &#125; = <span className="text-yellow-300">useLanguage</span>();<br />
         &nbsp;&nbsp;<span className="text-purple-400">return</span> (<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">className</span>=<span className="text-green-300">"py-24 bg-black"</span> <span className="text-red-400">id</span>=<span className="text-green-300">"skills"</span>&gt;<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">div</span> <span className="text-red-400">className</span>=<span className="text-green-300">"max-w-7xl mx-auto"</span>&gt;<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span> <span className="text-red-400">className</span>=<span className="text-green-300">"text-4xl font-bold"</span>&gt;<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.skills.title&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">section</span> <span className="text-red-400">id</span>=<span className="text-green-300">"stack"</span> <span className="text-red-400">className</span>=<span className="text-green-300">"section-padding relative"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">h2</span> <span className="text-red-400">className</span>=<span className="text-green-300">"section-title-cinema"</span>&gt;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;t.stack.title_1&#125; &lt;<span className="text-blue-400">span</span>&gt;&#123;t.stack.title_2&#125;&lt;/<span className="text-blue-400">span</span>&gt;<br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">h2</span>&gt;<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">div</span>&gt;<br />
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-400">section</span>&gt;<br />
         &nbsp;&nbsp);<br />
         &#125;
@@ -321,7 +319,7 @@ export function CodeSpotlightBg() {
   useEffect(() => {
     if (!mounted) return;
 
-    const sections = ["hero", "about", "services", "projects", "workflow", "skills", "philosophy", "contact"];
+    const sections = ["hero", "about", "services", "projects", "workflow", "stack", "philosophy", "contact"];
     
     const observers = sections.map(id => {
       const el = document.getElementById(id);
