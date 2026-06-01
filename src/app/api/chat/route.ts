@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       - Si te preguntan tu nombre, di que eres XEO, el motor de inteligencia de SaraviaDev.
     `;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     // Format chat history for Gemini (must alternate user/model)
     const formattedHistory = messages.map((m: any) => ({

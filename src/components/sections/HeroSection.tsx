@@ -10,16 +10,99 @@ import { DynamicText } from "@/components/ui/DynamicText";
 
 export function HeroSection() {
   const { t, language } = useLanguage();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Disable effect on touch devices to save battery and layout shifts
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.innerWidth < 768) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Set smooth CSS variables for cursor tracking spotlight
+      containerRef.current.style.setProperty("--mouse-x", `${x}px`);
+      containerRef.current.style.setProperty("--mouse-y", `${y}px`);
+
+      // Calculate normalized tilt values (-0.5 to 0.5)
+      const normalizedX = (x / rect.width) - 0.5;
+      const normalizedY = (y / rect.height) - 0.5;
+
+      // Max tilt of 8 degrees to keep it elegant and subtle
+      containerRef.current.style.setProperty("--tilt-x", `${normalizedY * -8}deg`);
+      containerRef.current.style.setProperty("--tilt-y", `${normalizedX * 8}deg`);
+    };
+
+    const handleMouseLeave = () => {
+      if (!containerRef.current) return;
+      // Reset tilt and spotlight position on mouse leave
+      containerRef.current.style.setProperty("--tilt-x", "0deg");
+      containerRef.current.style.setProperty("--tilt-y", "0deg");
+      containerRef.current.style.setProperty("--mouse-x", "-999px");
+      containerRef.current.style.setProperty("--mouse-y", "-999px");
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("mousemove", handleMouseMove);
+      container.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, []);
 
   const titleWords = t.hero.title_1.split(" ");
   const subtitleWords = t.hero.title_2.split(" ");
 
   return (
-    <section className="hero-cinematic" id="hero">
+    <section 
+      ref={containerRef} 
+      className="hero-cinematic overflow-hidden relative" 
+      id="hero"
+      style={{ perspective: "1200px" }}
+    >
+      {/* Interactive Bio-Digital Leaf Background */}
+      <div 
+        className="absolute inset-0 z-0 transition-transform duration-300 ease-out pointer-events-none"
+        style={{
+          transform: "rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.03)",
+          transformStyle: "preserve-3d",
+          willChange: "transform"
+        }}
+      >
+        {/* Base Layer: Darkened and blurred bio-leaf */}
+        <img
+          src="/hero-leaf.jpg"
+          alt="Bio-tech neural leaf base"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[4px] brightness-[0.25] contrast-[1.1] select-none pointer-events-none"
+        />
 
+        {/* Active Layer: Glowing spotlight circuit leaf */}
+        <div
+          className="absolute inset-0 w-full h-full select-none pointer-events-none"
+          style={{
+            backgroundImage: "url('/hero-leaf.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.85,
+            filter: "brightness(1.15) contrast(1.15) saturate(1.1)",
+            maskImage: "radial-gradient(circle 280px at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, rgba(0,0,0,0.55) 45%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(circle 280px at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, rgba(0,0,0,0.55) 45%, transparent 100%)",
+            willChange: "mask-image"
+          }}
+        />
+      </div>
 
-      {/* Dark overlay gradient */}
-      <div className="hero-overlay" />
+      {/* Dark overlay gradient for maximum text readability */}
+      <div className="hero-overlay z-[1] absolute inset-0 pointer-events-none" />
 
       {/* Hero Content — Bottom Left */}
       <div className="relative z-10 w-full px-6 md:px-12">
