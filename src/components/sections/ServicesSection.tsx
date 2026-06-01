@@ -10,55 +10,83 @@ export function ServicesSection() {
   const services = [
     {
       ...t.services.items[0],
-      icon: <Monitor className="w-6 h-6 text-primary" />,
-      color: "from-blue-500/20 to-cyan-500/20"
+      num: "01",
+      icon: <Monitor className="w-7 h-7 text-primary" />,
     },
     {
       ...t.services.items[1],
-      icon: <Cpu className="w-6 h-6 text-purple-400" />,
-      color: "from-purple-500/20 to-pink-500/20"
+      num: "02",
+      icon: <Cpu className="w-7 h-7 text-primary" />,
     },
     {
       ...t.services.items[2],
-      icon: <Zap className="w-6 h-6 text-primary" />,
-      color: "from-cyan-500/20 to-purple-500/20"
-    }
+      num: "03",
+      icon: <Zap className="w-7 h-7 text-primary" />,
+    },
   ];
 
   return (
-    <section id="services" className="py-32 relative border-t border-white/5 bg-black/30">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 md:mb-24 max-w-2xl">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            {t.services.title_1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">{t.services.title_2}</span>
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
+    <section id="services" className="services-pinned">
+      {/* Left — Sticky Title */}
+      <div className="services-left">
+        <div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="section-title-cinema mb-6"
+          >
+            {t.services.title_1}
+            <br />
+            <span className="gradient-text-accent">{t.services.title_2}</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="section-subtitle-cinema"
+          >
             {t.services.subtitle}
-          </p>
+          </motion.p>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 60 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="h-[2px] bg-primary mt-8 rounded-full"
+          />
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-primary/40 hover:shadow-glow-cyan transition-all duration-300"
-            >
+      {/* Right — Scrolling Cards */}
+      <div className="services-right">
+        {services.map((service, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className="service-card-premium group"
+          >
+            <span className="s-num">{service.num}</span>
+            <div className="flex items-start gap-5 mb-4">
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] group-hover:border-primary/20 group-hover:bg-primary/[0.05] transition-all">
+                {service.icon}
+              </div>
               <div>
-                <div className={`mb-8 w-14 h-14 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-[-0.02em]">
+                  {service.title}
+                </h3>
+                <p className="text-white/40 leading-relaxed text-base">
                   {service.description}
                 </p>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

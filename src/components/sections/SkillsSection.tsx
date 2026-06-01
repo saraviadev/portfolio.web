@@ -3,70 +3,74 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
+const skillCategories = [
+  {
+    titleEn: "Frontend",
+    titleEs: "Frontend",
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Zustand"],
+  },
+  {
+    titleEn: "Backend",
+    titleEs: "Backend",
+    skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs", "Microservices"],
+  },
+  {
+    titleEn: "Tools & AI",
+    titleEs: "Herramientas e IA",
+    skills: ["Git/GitHub", "Vercel", "Docker", "Postman", "AI Agents", "OpenAI / Gemini SDK"],
+  },
+];
+
 export function SkillsSection() {
-  const { t } = useLanguage();
-
-  const skills = t.skills.items;
-
-  // Group skills by category
-  const categories = [
-    { id: "frontend", name: t.skills.categories.frontend },
-    { id: "backend", name: t.skills.categories.backend },
-    { id: "soft", name: t.skills.categories.soft }
-  ];
+  const { language } = useLanguage();
 
   return (
-    <section id="skills" className="py-32 relative border-t border-white/5 bg-black/30">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 md:mb-24 max-w-2xl">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            {t.skills.title_1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">{t.skills.title_2}</span>
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            {t.skills.subtitle}
-          </p>
-        </div>
+    <section id="stack" className="section-padding bg-black relative border-t border-white/5">
+      {/* Background Subtle Gradient */}
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {categories.map((category, catIndex) => {
-            const catSkills = skills.filter((s: any) => s.category === category.id);
-            return (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-                className="glass-card p-8 rounded-2xl border border-white/5 flex flex-col gap-8"
-              >
-                <h3 className="text-xl font-bold border-b border-white/10 pb-4 text-primary">
-                  {category.name}
-                </h3>
-                
-                <div className="flex flex-col gap-6">
-                  {catSkills.map((skill: any, index: number) => (
-                    <div key={index} className="flex flex-col gap-2">
-                      <div className="flex justify-between items-center text-sm font-medium">
-                        <span className="text-muted-foreground font-mono">{skill.name}</span>
-                        <span className="text-primary font-bold">{skill.value}%</span>
-                      </div>
-                      
-                      {/* Progress Bar Container */}
-                      <div className="h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.value}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: index * 0.05, ease: "easeOut" }}
-                          className="h-full bg-gradient-to-r from-primary to-purple-500 rounded-full shadow-glow-cyan"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 md:mb-24"
+        >
+          <h2 className="section-title">
+            <span className="text-primary font-mono text-sm tracking-widest uppercase block mb-4">
+              {language === "en" ? "Technical Arsenal" : "Arsenal Técnico"}
+            </span>
+            {language === "en" ? "Tech Stack" : "Tecnologías"}
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          {skillCategories.map((category, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="group"
+            >
+              <h3 className="text-xl font-medium text-white mb-8 pb-4 border-b border-white/10 group-hover:border-primary/50 transition-colors">
+                {language === "en" ? category.titleEn : category.titleEs}
+              </h3>
+              
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill, sIdx) => (
+                  <span
+                    key={sIdx}
+                    className="px-4 py-2 text-sm font-mono tracking-wide text-white/70 bg-white/[0.03] border border-white/5 rounded hover:bg-primary/10 hover:text-white hover:border-primary/30 transition-all duration-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

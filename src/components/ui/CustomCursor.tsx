@@ -1,63 +1,30 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const outlineRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let mouseX = 0;
-    let mouseY = 0;
-    let outlineX = 0;
-    let outlineY = 0;
-    const lerpSpeed = 0.15; // Smooth dragging inertia
+    // Only run on non-touch desktop devices
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.innerWidth < 768) return;
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (dotRef.current) {
-        dotRef.current.style.left = `${mouseX}px`;
-        dotRef.current.style.top = `${mouseY}px`;
-      }
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      if (!isVisible) setIsVisible(true);
     };
+
+    const onMouseEnter = () => setIsHovering(true);
+    const onMouseLeave = () => setIsHovering(false);
 
     document.addEventListener("mousemove", onMouseMove);
 
-    const updatePosition = () => {
-      outlineX += (mouseX - outlineX) * lerpSpeed;
-      outlineY += (mouseY - outlineY) * lerpSpeed;
-      if (outlineRef.current) {
-        outlineRef.current.style.left = `${outlineX}px`;
-        outlineRef.current.style.top = `${outlineY}px`;
-      }
-      requestAnimationFrame(updatePosition);
-    };
-
-    const animationId = requestAnimationFrame(updatePosition);
-
-    // Custom hover handlers for interactive items
-    const onMouseEnter = (e: Event) => {
-      document.body.classList.add("cursor-hover-active");
-      const target = e.currentTarget as HTMLElement;
-      if (
-        target.classList.contains("magnetic-target") || 
-        target.tagName === "A" || 
-        target.tagName === "BUTTON" ||
-        target.closest("button") ||
-        target.closest("a")
-      ) {
-        document.body.classList.add("cursor-blend-active");
-      }
-    };
-
-    const onMouseLeave = () => {
-      document.body.classList.remove("cursor-hover-active");
-      document.body.classList.remove("cursor-blend-active");
-    };
-
     const attachListeners = () => {
-      document.querySelectorAll(".hover-target").forEach((el) => {
+      document.querySelectorAll(".hover-target, a, button").forEach((el) => {
         el.removeEventListener("mouseenter", onMouseEnter);
         el.removeEventListener("mouseleave", onMouseLeave);
         el.addEventListener("mouseenter", onMouseEnter);
@@ -66,24 +33,34 @@ export function CustomCursor() {
     };
 
     attachListeners();
-
-    // Re-check dynamic components
     const observer = new MutationObserver(attachListeners);
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
-      cancelAnimationFrame(animationId);
       observer.disconnect();
-      document.body.classList.remove("cursor-hover-active", "cursor-blend-active");
     };
-  }, []);
+  }, [isVisible]);
+
+  if (!isVisible) return null;
 
   return (
-    <>
-      <div ref={dotRef} className="cursor-dot hidden md:block" id="cursor-dot" />
-      <div ref={outlineRef} className="cursor-outline hidden md:block" id="cursor-outline" />
-    </>
+    <motion.div
+      className="cursor-dot bg-[#5b21b6] rounded-full z-[99999] pointer-events-none"
+      animate={{
+        x: mousePosition.x - 4, // Center the 8px dot
+        y: mousePosition.y - 4,
+        scale: isHovering ? 2.5 : 1,
+        opacity: isHovering ? 0.8 : 1,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 1000,
+        damping: 40,
+        mass: 0.1,
+      }}
+    />
   );
 }
+
 export default CustomCursor;

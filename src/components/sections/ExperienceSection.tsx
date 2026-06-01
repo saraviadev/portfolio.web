@@ -8,62 +8,72 @@ export function ExperienceSection() {
   const { t } = useLanguage();
 
   const items = [
-    {
-      ...t.experience.items[0], // UTN
-      icon: <Award className="w-5 h-5 text-primary" />,
-    },
-    {
-      ...t.experience.items[1], // Coto
-      icon: <Briefcase className="w-5 h-5 text-purple-400" />,
-    },
-    {
-      ...t.experience.items[2], // Técnica N1
-      icon: <GraduationCap className="w-5 h-5 text-primary" />,
-    }
+    { ...t.experience.items[0], icon: <Award className="w-5 h-5 text-primary" /> },
+    { ...t.experience.items[1], icon: <Briefcase className="w-5 h-5 text-white/50" /> },
+    { ...t.experience.items[2], icon: <GraduationCap className="w-5 h-5 text-primary" /> },
   ];
 
   return (
-    <section id="experience" className="py-32 relative border-t border-white/5">
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
-      
-      <div className="container mx-auto px-4">
+    <section id="experience" className="section-padding relative border-t border-white/[0.04]">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="mb-16 md:mb-24 max-w-2xl">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            {t.experience.title_1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">{t.experience.title_2}</span>
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="section-title-cinema mb-6"
+          >
+            {t.experience.title_1}{" "}
+            <span className="gradient-text-accent">{t.experience.title_2}</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="section-subtitle-cinema"
+          >
             {t.experience.subtitle}
-          </p>
+          </motion.p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto pl-8 border-l border-white/10 flex flex-col gap-12">
+        {/* Timeline */}
+        <div className="relative max-w-4xl mx-auto pl-8 md:pl-12 flex flex-col gap-10">
+          {/* Vertical Line */}
+          <div className="absolute left-0 md:left-4 top-0 bottom-0 w-px bg-white/[0.06]" />
+
           {items.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="relative"
             >
-              {/* Timeline Icon Node */}
-              <div className="absolute -left-[53px] top-1.5 w-10 h-10 rounded-xl bg-bgCard border border-white/10 flex items-center justify-center shadow-lg group">
-                <div className="absolute inset-0 bg-primary/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Timeline Node */}
+              <div className="absolute -left-8 md:-left-12 top-2 w-8 h-8 md:w-9 md:h-9 rounded-xl bg-[#0a0a0a] border border-white/[0.08] flex items-center justify-center group">
+                <div className="absolute inset-0 bg-primary/[0.05] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 {item.icon}
               </div>
 
               {/* Content Card */}
-              <div className="glass-card p-8 rounded-2xl border border-white/5 hover:border-white/15 transition-all">
+              <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.1] transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                   <div>
-                    <span className="text-xs font-mono text-primary font-bold">{item.period}</span>
-                    <h3 className="text-2xl font-bold mt-1">{item.role}</h3>
+                    <span className="text-[0.7rem] font-mono text-primary font-bold tracking-wider">
+                      {item.period}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold mt-1 tracking-[-0.02em]">
+                      {item.role}
+                    </h3>
                   </div>
-                  <span className="text-sm font-semibold px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground self-start sm:self-center">
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-white/40 self-start sm:self-center shrink-0">
                     {item.company}
                   </span>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-white/35 leading-relaxed text-sm">
                   {item.description}
                 </p>
               </div>

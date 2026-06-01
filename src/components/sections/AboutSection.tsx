@@ -1,46 +1,59 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function AboutSection() {
   const { t } = useLanguage();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const words = container.querySelectorAll(".reveal-word");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -20% 0px",
+        threshold: 0.5,
+      }
+    );
+
+    words.forEach((word) => observer.observe(word));
+
+    return () => {
+      words.forEach((word) => observer.unobserve(word));
+    };
+  }, [t]);
+
+  // Split the about content into words for reveal animation
+  const aboutText = t.about.content;
+  const wordsArray = aboutText.split(" ");
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden border-t border-white/5">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
-      
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5 }}
-            className="text-xs font-mono font-bold tracking-widest text-primary uppercase mb-6 block"
-          >
-            {t.about.subtitle}
-          </motion.span>
-          
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold tracking-tight mb-8"
-          >
-            {t.about.title_1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">{t.about.title_2}</span>
-          </motion.h2>
-
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl font-light text-muted-foreground leading-relaxed md:leading-loose"
-          >
-            {t.about.content}
-          </motion.p>
+    <section
+      id="about"
+      className="section-padding relative"
+      style={{ background: "#000" }}
+    >
+      <div className="max-w-5xl mx-auto px-6 md:px-12">
+        <div ref={containerRef}>
+          <p className="text-[clamp(1.5rem,3.5vw,3rem)] font-semibold leading-[1.4] tracking-[-0.02em]">
+            {wordsArray.map((word, i) => (
+              <span key={i} className="reveal-word mr-[0.3em] inline-block">
+                {word}
+              </span>
+            ))}
+          </p>
         </div>
       </div>
     </section>

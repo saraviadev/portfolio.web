@@ -13,53 +13,61 @@ export function BackgroundAnimation() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden bg-[#0a0a0a]">
+    <div className="fixed inset-0 z-[-1] overflow-hidden bg-[#000000]">
+      {/* Primary orb — top left */}
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.15, 0.1],
-          x: [0, 100, 0],
-          y: [0, -50, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-primary/20"
-      />
-      
-      <motion.div
-        animate={{
-          scale: [1, 1.5, 1],
-          opacity: [0.1, 0.2, 0.1],
-          x: [0, -100, 0],
-          y: [0, 100, 0],
+          scale: [1, 1.15, 1],
+          opacity: [0.03, 0.06, 0.03],
+          x: [0, 80, 0],
+          y: [0, -40, 0],
         }}
         transition={{
           duration: 20,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full blur-[150px] bg-purple-600/20"
+        className="absolute top-[-15%] left-[-15%] w-[55%] h-[55%] rounded-full blur-[150px] bg-primary/30"
       />
 
+      {/* Purple orb — bottom right */}
       <motion.div
         animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.05, 0.1, 0.05],
-          y: [0, -150, 0],
+          scale: [1, 1.2, 1],
+          opacity: [0.02, 0.05, 0.02],
+          x: [0, -80, 0],
+          y: [0, 60, 0],
         }}
         transition={{
-          duration: 10,
+          duration: 25,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-[20%] left-[40%] w-[30%] h-[30%] rounded-full blur-[100px] bg-blue-500/20"
+        className="absolute bottom-[-15%] right-[-15%] w-[60%] h-[60%] rounded-full blur-[180px] bg-purple-600/20"
       />
 
-      {/* Grid overlay for texture */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
+      {/* Small accent — center */}
+      <motion.div
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.01, 0.03, 0.01],
+          y: [0, -80, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-[30%] left-[40%] w-[25%] h-[25%] rounded-full blur-[120px] bg-blue-500/20"
+      />
+
+      {/* Noise texture overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.015] mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
     </div>
   );
 }

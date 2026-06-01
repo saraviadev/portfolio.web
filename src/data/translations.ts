@@ -24,8 +24,8 @@ export const translations = {
       content: "I am Theo Saravia, a Fullstack Developer dedicated to engineering high-performance interactive interfaces and robust, scalable backend systems. I balance modern design aesthetics with clean code practices to deliver stable, ultra-fast software solutions optimized for the digital era."
     },
     services: {
-      title_1: "Elite",
-      title_2: "Solutions",
+      title_1: "Engineering",
+      title_2: "Services",
       subtitle: "A professional suite of development services designed to construct stable, scalable, and responsive software architectures.",
       items: [
         {
@@ -189,9 +189,9 @@ export const translations = {
       ]
     },
     certifications: {
-      title_1: "Academic",
-      title_2: "Excellence",
-      subtitle: "Formal education and specialized certifications backing practical technical skills.",
+      title_1: "Degrees",
+      title_2: "& Certifications",
+      subtitle: "Formal education and certifications that back my technical knowledge.",
       completed: "Completed"
     },
     stack: {
@@ -242,8 +242,8 @@ export const translations = {
       content: "Soy Theo Saravia, un Desarrollador Fullstack apasionado por programar interfaces interactivas de alto rendimiento y arquitecturas de servidor robustas y escalables. Equilibro la estética del diseño moderno con prácticas de código limpio para entregar soluciones de software estables, rápidas y optimizadas para la era digital."
     },
     services: {
-      title_1: "Soluciones de",
-      title_2: "Élite",
+      title_1: "Servicios de",
+      title_2: "Ingeniería",
       subtitle: "Un conjunto profesional de servicios de desarrollo diseñados para construir arquitecturas de software estables, escalables y adaptables.",
       items: [
         {
@@ -407,9 +407,9 @@ export const translations = {
       ]
     },
     certifications: {
-      title_1: "Excelencia",
-      title_2: "Académica",
-      subtitle: "Formal educación y certificaciones especializadas que respaldan habilidades técnicas prácticas.",
+      title_1: "Títulos",
+      title_2: "y Certificaciones",
+      subtitle: "Educación formal y certificaciones que respaldan mis conocimientos técnicos.",
       completed: "Completado"
     },
     stack: {

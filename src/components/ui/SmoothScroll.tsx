@@ -9,6 +9,9 @@ interface SmoothScrollProps {
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
   useEffect(() => {
+    // Force scroll to top on page reload/mount
+    window.scrollTo(0, 0);
+
     // Only run in client browser environment
     const lenisInstance = new Lenis({
       duration: 1.2,
@@ -16,8 +19,8 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      syncTouch: false, // CRITICAL: Disable on touch devices for native performance
+      touchMultiplier: 1,
     });
 
     function raf(time: number) {
