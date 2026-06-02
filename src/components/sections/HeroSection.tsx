@@ -69,7 +69,7 @@ export function HeroSection() {
       id="hero"
       style={{ perspective: "1200px" }}
     >
-      {/* Interactive Bio-Digital Leaf Background */}
+      {/* Interactive Cyber-Grid Background */}
       <div 
         className="absolute inset-0 z-0 transition-transform duration-300 ease-out pointer-events-none"
         style={{
@@ -78,22 +78,22 @@ export function HeroSection() {
           willChange: "transform"
         }}
       >
-        {/* Base Layer: Darkened and blurred bio-leaf */}
+        {/* Base Layer: Darkened and blurred cyber-grid */}
         <img
-          src="/hero-leaf.jpg"
-          alt="Bio-tech neural leaf base"
-          className="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[4px] brightness-[0.25] contrast-[1.1] select-none pointer-events-none"
+          src="/hero-bg.png"
+          alt="3D Cyber-Grid mesh base"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[3px] brightness-[0.22] contrast-[1.15] select-none pointer-events-none"
         />
 
-        {/* Active Layer: Glowing spotlight circuit leaf */}
+        {/* Active Layer: Glowing spotlight cyber-grid revealing bright neon nodes */}
         <div
           className="absolute inset-0 w-full h-full select-none pointer-events-none"
           style={{
-            backgroundImage: "url('/hero-leaf.jpg')",
+            backgroundImage: "url('/hero-bg.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: 0.85,
-            filter: "brightness(1.15) contrast(1.15) saturate(1.1)",
+            opacity: 0.9,
+            filter: "brightness(1.25) contrast(1.2) saturate(1.15)",
             maskImage: "radial-gradient(circle 280px at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, rgba(0,0,0,0.55) 45%, transparent 100%)",
             WebkitMaskImage: "radial-gradient(circle 280px at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, rgba(0,0,0,0.55) 45%, transparent 100%)",
             willChange: "mask-image"
