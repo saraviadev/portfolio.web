@@ -7,6 +7,7 @@ import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 
 import { DynamicText } from "@/components/ui/DynamicText";
+import { InteractiveCyberGrid } from "@/components/ui/InteractiveCyberGrid";
 
 export function HeroSection() {
   const { t, language } = useLanguage();
@@ -67,12 +68,7 @@ export function HeroSection() {
           willChange: "transform"
         }}
       >
-        {/* Base Layer: The high-res Cyber-Grid image passed by the user */}
-        <img
-          src="/hero-bg.png"
-          alt="3D Cyber-Grid mesh background"
-          className="absolute inset-0 w-full h-full object-cover opacity-75 filter brightness-[0.38] contrast-[1.12] saturate-[1.1] select-none pointer-events-none"
-        />
+        <InteractiveCyberGrid />
       </div>
 
       {/* Dark overlay gradient for maximum text readability */}

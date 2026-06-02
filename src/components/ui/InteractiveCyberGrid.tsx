@@ -2,6 +2,32 @@
 
 import { useEffect, useRef } from "react";
 
+// Pre-render a single glowing particle for massive performance gains (Canvas Caching)
+function createParticleCanvas(size: number, colorStr: string) {
+  if (typeof document === "undefined") return null;
+  const canvas = document.createElement("canvas");
+  canvas.width = size * 4;
+  canvas.height = size * 4;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+
+  const center = size * 2;
+  
+  // Soft outer glow for bokeh effect
+  const gradient = ctx.createRadialGradient(center, center, 0, center, center, size * 2);
+  gradient.addColorStop(0, colorStr);
+  gradient.addColorStop(0.2, colorStr.replace(/[\d.]+\)$/, '0.8)'));
+  gradient.addColorStop(0.6, colorStr.replace(/[\d.]+\)$/, '0.15)'));
+  gradient.addColorStop(1, colorStr.replace(/[\d.]+\)$/, '0)'));
+
+  ctx.fillStyle = gradient;
+  ctx.beginPath();
+  ctx.arc(center, center, size * 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  return canvas;
+}
+
 export function InteractiveCyberGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -999, y: -999, active: false });
@@ -10,7 +36,8 @@ export function InteractiveCyberGrid() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    // Use alpha: false if possible for performance, but we need transparent background, so we stick to true.
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -47,12 +74,36 @@ export function InteractiveCyberGrid() {
       parent.addEventListener("mouseleave", handleMouseLeave);
     }
 
-    // High-density particle wave configuration (3D Perspective)
-    const cols = 60;
-    const rows = 35;
-    const cameraZ = 120;
-    const fov = 380;
-    const angleX = 1.22; // Low-angle 3D tilt perspective matching the image
+    // Pre-render glowing particles
+    const cyanParticle = createParticleCanvas(6, "rgba(56, 189, 248, 1)"); // Bright highlight
+    const darkBlueParticle = createParticleCanvas(4, "rgba(14, 165, 233, 1)"); // Deep sea base
+
+    // Massive Particle Cloud Initialization (Organic random distribution to kill grid look)
+    const particles: { bx: number; bz: number; sizeOffset: number }[] = [];
+    const densityX = 140; // 140 columns
+    const densityZ = 70;  // 70 rows deep
+    const spreadX = 2800; // Wide cinematic canvas
+    const spreadZ = 1200; // Deep Z-axis
+
+    for (let i = 0; i < densityZ; i++) {
+      for (let j = 0; j < densityX; j++) {
+        // Add extreme jitter to eliminate straight lines, creating an organic point cloud
+        const jitterX = (Math.random() - 0.5) * (spreadX / densityX) * 1.8;
+        const jitterZ = (Math.random() - 0.5) * (spreadZ / densityZ) * 1.8;
+        
+        particles.push({
+          bx: (j / densityX - 0.5) * spreadX + jitterX,
+          bz: i * (spreadZ / densityZ) + jitterZ,
+          sizeOffset: Math.random() * 0.6 + 0.4 // Varied sizes for realistic bokeh
+        });
+      }
+    }
+
+    // 3D Camera Configuration
+    const cameraY = -140; // Positioned low to the ground for epic peaks
+    const cameraZ = -120;
+    const fov = 400;
+    const angleX = 1.30; // Tilt upwards to see deep horizon
     const cosX = Math.cos(angleX);
     const sinX = Math.sin(angleX);
 
@@ -61,108 +112,83 @@ export function InteractiveCyberGrid() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const cx = canvas.width / 2;
-      const cy = canvas.height / 2 + 120; // Shift center downwards for expansive landscape
+      const cy = canvas.height / 2 + 100;
 
-      const spacingX = canvas.width / (cols - 1);
-      const spacingY = (canvas.height * 1.6) / (rows - 1);
+      // Slow cinematic camera drift
+      const cameraOffsetX = Math.sin(time * 0.2) * 80;
+      
+      // Batch rendering
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        
+        // Fluid organic waves (Stacked irrational frequencies for chaotic fluid dynamics)
+        let y = Math.sin(p.bx * 0.005 + time) * 35 
+              + Math.sin(p.bz * 0.008 + time * 1.2) * 25
+              + Math.cos((p.bx + p.bz) * 0.007 + time * 0.8) * 15;
 
-      // Project all particle nodes
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const baseX = c * spacingX;
-          const baseY = r * spacingY - canvas.height * 0.3;
+        // Base 3D Coordinates relative to camera
+        const px = p.bx - cameraOffsetX;
+        const pz = p.bz - cameraZ;
 
-          // Distance to mouse for interactive mountains
-          const dx = baseX - mouseRef.current.x;
-          const dy = baseY - mouseRef.current.y;
-          const dist = Math.hypot(dx, dy);
+        // Interactive "Mouse Mountain" Magnetism
+        let activeGlow = 0;
+        if (mouseRef.current.active) {
+          // Estimate mapping from 2D mouse coordinates back to 3D plane
+          const mouseZApprox = (mouseRef.current.y / canvas.height) * (spreadZ * 0.6);
+          const mouseXApprox = (mouseRef.current.x - cx) * 2;
+          
+          const dx = px - mouseXApprox;
+          const dz = p.bz - mouseZApprox;
+          const dist = Math.hypot(dx, dz);
 
-          // 1. Natural flowing waves (undulating peaks & valleys)
-          let z = Math.sin(c * 0.12 + time) * Math.cos(r * 0.15 + time * 0.8) * 15;
-          z += Math.sin((c + r) * 0.08 + time * 0.5) * 8; // Layered noise wave
-
-          // 2. Interactive "Mini-Mountains" displacement: lift grid points to form a physical peak under mouse
-          let activeGlow = 0;
-          if (mouseRef.current.active && dist < 220) {
-            const force = (1 - dist / 220);
-            const peakHeight = Math.sin(force * Math.PI) * 60; // Smooth dome peak
-            z += peakHeight;
+          if (dist < 280) {
+            const force = Math.max(0, 1 - dist / 280);
+            // Smooth mountain peak pulling particles up (-y)
+            const lift = Math.pow(Math.sin(force * Math.PI / 2), 2) * -110; 
+            y += lift;
             activeGlow = force;
           }
+        }
 
-          // 3D Perspective Rotations & Translation
-          const px = baseX - cx;
-          const py = baseY - cy;
+        // Apply 3D Pitch Rotation
+        const py = y - cameraY;
+        const rotY = py * cosX - pz * sinX;
+        const rotZ = py * sinX + pz * cosX;
 
-          const rotY = py * cosX - z * sinX;
-          const rotZ = py * sinX + z * cosX + cameraZ + r * 16; // Add depth per row
+        // Frustum culling (Don't render behind camera)
+        if (rotZ < 10) continue;
 
-          const projX = cx + (px * fov) / rotZ;
-          const projY = cy + (rotY * fov) / rotZ;
+        // Perspective Projection
+        const projX = cx + (px * fov) / rotZ;
+        const projY = cy + (rotY * fov) / rotZ;
 
-          // Depth check to prevent rendering behind camera
-          if (rotZ <= 10) continue;
+        // Cinematic Depth of Field (Bokeh effect)
+        const focusZ = 250; // Z-depth that is perfectly in focus
+        const blurFactor = Math.abs(rotZ - focusZ) / 500;
+        
+        let scale = (fov / rotZ) * p.sizeOffset;
+        let opacity = Math.max(0, 1 - rotZ / spreadZ);
+        
+        // Particles far away get large and blurry, particles close stay sharp
+        if (rotZ > focusZ) {
+           scale *= 1 + blurFactor * 2;
+           opacity *= Math.max(0.05, 1 - blurFactor * 1.5);
+        }
 
-          // Depth-based fog/fading
-          const maxZ = cameraZ + rows * 16 + canvas.height * 0.6;
-          const opacity = Math.max(0, 1 - rotZ / maxZ);
+        if (opacity <= 0.01) continue;
 
-          // Calculate particle size based on 3D depth (bokeh/perspective)
-          const baseSize = 2.2 * (fov / rotZ) * opacity;
-          const finalSize = Math.max(0.6, baseSize);
-
-          // Draw the glowing particle
-          ctx.beginPath();
-          ctx.arc(projX, projY, finalSize, 0, Math.PI * 2);
-
-          // Interpolate color from sky-blue to electric-cyan depending on mouse active lift
-          if (activeGlow > 0) {
-            ctx.fillStyle = `rgba(56, 189, 248, ${opacity * (0.6 + activeGlow * 0.4)})`;
-          } else {
-            ctx.fillStyle = `rgba(14, 165, 233, ${opacity * 0.45})`; // Match the image's cyan/blue glow
-          }
-          ctx.fill();
-
-          // Render subtle connection lines only for nearby rows to keep the net structure elegant
-          if (c < cols - 1 && r % 2 === 0) {
-            const nextBaseX = (c + 1) * spacingX;
-            const nextBaseY = r * spacingY - canvas.height * 0.3;
-            const nextDx = nextBaseX - mouseRef.current.x;
-            const nextDy = nextBaseY - mouseRef.current.y;
-            const nextDist = Math.hypot(nextDx, nextDy);
-            let nextZ = Math.sin((c + 1) * 0.12 + time) * Math.cos(r * 0.15 + time * 0.8) * 15;
-            nextZ += Math.sin((c + 1 + r) * 0.08 + time * 0.5) * 8;
-
-            if (mouseRef.current.active && nextDist < 220) {
-              nextZ += Math.sin((1 - nextDist / 220) * Math.PI) * 60;
-            }
-
-            const nextRotY = (nextBaseY - cy) * cosX - nextZ * sinX;
-            const nextRotZ = (nextBaseY - cy) * sinX + nextZ * cosX + cameraZ + r * 16;
-
-            const nextProjX = cx + ((nextBaseX - cx) * fov) / nextRotZ;
-            const nextProjY = cy + (nextRotY * fov) / nextRotZ;
-
-            if (nextRotZ > 10) {
-              ctx.beginPath();
-              ctx.moveTo(projX, projY);
-              ctx.lineTo(nextProjX, nextProjY);
-              ctx.strokeStyle = `rgba(14, 165, 233, ${opacity * 0.08})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-
-          // Add elegant outer glow bloom for high-intensity interactive peaks
-          if (activeGlow > 0.4 && rotZ < 450) {
-            ctx.beginPath();
-            ctx.arc(projX, projY, finalSize * 3.5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(56, 189, 248, ${activeGlow * opacity * 0.12})`;
-            ctx.fill();
-          }
+        const size = scale * 2.5;
+        
+        // Select particle image (glowing cyan if lifted, dark blue if base)
+        const particleImg = activeGlow > 0.25 ? cyanParticle : darkBlueParticle;
+        
+        if (particleImg) {
+          ctx.globalAlpha = opacity * (0.35 + activeGlow * 0.65);
+          ctx.drawImage(particleImg, projX - size / 2, projY - size / 2, size, size);
         }
       }
 
+      ctx.globalAlpha = 1.0;
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -179,9 +205,12 @@ export function InteractiveCyberGrid() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-85"
-    />
+    <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 bg-[#020617] opacity-80" /> {/* Dark cinematic gradient layer */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full opacity-90"
+      />
+    </div>
   );
 }
