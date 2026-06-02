@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
@@ -10,14 +11,73 @@ import { InteractiveCyberGrid } from "@/components/ui/InteractiveCyberGrid";
 
 export function HeroSection() {
   const { t, language } = useLanguage();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.innerWidth < 768) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const normalizedX = (x / rect.width) - 0.5;
+      const normalizedY = (y / rect.height) - 0.5;
+
+      // Small, elegant 3D parallax tilt (max 5 degrees)
+      containerRef.current.style.setProperty("--tilt-x", `${normalizedY * -5}deg`);
+      containerRef.current.style.setProperty("--tilt-y", `${normalizedX * 5}deg`);
+    };
+
+    const handleMouseLeave = () => {
+      if (!containerRef.current) return;
+      containerRef.current.style.setProperty("--tilt-x", "0deg");
+      containerRef.current.style.setProperty("--tilt-y", "0deg");
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("mousemove", handleMouseMove);
+      container.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, []);
 
   return (
     <section 
+      ref={containerRef} 
       className="hero-cinematic overflow-hidden relative" 
       id="hero"
+      style={{ perspective: "1200px" }}
     >
-      {/* Interactive 3D Cyber-Grid Background */}
-      <InteractiveCyberGrid />
+      {/* Interactive 3D Cyber-Grid Background Container */}
+      <div 
+        className="absolute inset-0 z-0 transition-transform duration-300 ease-out pointer-events-none"
+        style={{
+          transform: "rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.05)",
+          transformStyle: "preserve-3d",
+          willChange: "transform"
+        }}
+      >
+        {/* Base Layer: The high-res Cyber-Grid image passed by the user (ALWAYS FULLY VISIBLE) */}
+        <img
+          src="/hero-bg.png"
+          alt="3D Cyber-Grid mesh background"
+          className="absolute inset-0 w-full h-full object-cover opacity-75 filter brightness-[0.38] contrast-[1.12] saturate-[1.1] select-none pointer-events-none"
+        />
+
+        {/* Live Mathematical 3D Cyber-Grid Canvas (creates the interactive "mini-mountains" and waves on top of the image) */}
+        <InteractiveCyberGrid />
+      </div>
 
       {/* Dark overlay gradient for maximum text readability */}
       <div className="hero-overlay z-[1] absolute inset-0 pointer-events-none" />
