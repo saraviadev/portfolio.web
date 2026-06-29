@@ -18,26 +18,29 @@ export function FeaturedProjects() {
   const projectDetails = [
     {
       liveUrl: "https://looserfit.com",
-      githubUrl: "https://github.com/saraviadev",
+      githubUrl: "https://github.com/saraviadev/looserfit-web",
       image: "/projects/looserfit.jpg",
       imagePlaceholder: "Captura de Looserfit.com",
       isBackend: false,
     },
     {
       liveUrl: null,
-      githubUrl: "https://github.com/saraviadev",
+      githubUrl: "https://github.com/saraviadev/ecommerce-api-utn",
+      image: "/projects/backend_ecommerce.png",
       imagePlaceholder: "Diagrama de Arquitectura de Microservicios (UTN)",
       isBackend: true,
     },
     {
       liveUrl: null,
-      githubUrl: "https://github.com/saraviadev",
+      githubUrl: "https://github.com/saraviadev/identity-provider-service",
+      image: "/projects/backend_identity.png",
       imagePlaceholder: "Flujo de Autenticación OAuth2 & Redis",
       isBackend: true,
     },
     {
       liveUrl: null,
-      githubUrl: "https://github.com/saraviadev",
+      githubUrl: "https://github.com/saraviadev/high-frequency-data-aggregator",
+      image: "/projects/backend_data.png",
       imagePlaceholder: "Estructura de Base de Datos y Pipelines ESR",
       isBackend: true,
     },
