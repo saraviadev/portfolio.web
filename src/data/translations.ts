@@ -49,7 +49,7 @@ export const translations = {
       items: [
         {
           title: "Looserfit Web & E-Commerce",
-          description: "A premium high-performance interactive fitness brand and e-commerce platform. Features dynamic cataloging, secure payment gateways, and a custom administrative dashboard.",
+          description: "A premium high-performance interactive clothing brand and e-commerce platform. Features dynamic cataloging, secure payment gateways, and a custom administrative dashboard.",
           architecture: ["React", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
           metrics: ["Production Live", "Payment Gateway", "Admin Panel"]
         },
@@ -267,7 +267,7 @@ export const translations = {
       items: [
         {
           title: "Looserfit Web & E-Commerce",
-          description: "Una plataforma e-commerce completa y marca interactiva de fitness de alto rendimiento. Cuenta con catálogo dinámico de productos, pasarela de pagos segura y un panel de administración personalizado.",
+          description: "Una plataforma e-commerce completa y marca interactiva de ropa urbana de alto rendimiento. Cuenta con catálogo dinámico de productos, pasarela de pagos segura y un panel de administración personalizado.",
           architecture: ["React", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
           metrics: ["En Producción", "Pasarela de Pago", "Panel Admin"]
         },
