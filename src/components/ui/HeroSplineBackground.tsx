@@ -119,14 +119,14 @@ export function HeroSplineBackground() {
       </div>
 
       {/* Spline Model - Right Side */}
-      <div className="absolute right-0 top-0 w-full md:w-[60%] lg:w-[50%] h-full z-10 overflow-hidden pointer-events-auto flex items-center justify-center">
+      <div className="absolute right-0 top-0 w-full md:w-[60%] lg:w-[50%] h-full z-10 pointer-events-auto flex items-center justify-center">
         {/* We scale the Spline and apply a slight bottom/right translate trick to hide the watermark. 
             When interacting, it smoothly zooms out to reveal more of the robot while keeping the watermark hidden. */}
         <div 
           className={`w-full h-[115%] transition-all duration-[2000ms] ease-out origin-center ${
             isInteracting 
-              ? 'scale-[1.18] translate-y-[4%] translate-x-[2%]' 
-              : 'scale-[1.30] translate-y-[10%] translate-x-[6%]'
+              ? 'scale-[1.15] translate-y-[4%] translate-x-[2%]' 
+              : 'scale-[1.25] translate-y-[8%] translate-x-[5%]'
           }`}
         >
           <Spline scene="https://prod.spline.design/o-V6F6pRACjmT4a9/scene.splinecode" />
