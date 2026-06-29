@@ -75,14 +75,14 @@ export function HeroSection() {
       <div className="hero-overlay z-[1] absolute inset-0 pointer-events-none" />
 
       {/* Hero Content — Bottom Left */}
-      <div className="relative z-10 w-full px-6 md:px-12">
+      <div className="relative z-10 w-full px-6 md:px-12 pointer-events-none">
         <div className="max-w-5xl">
           {/* Availability Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 2.6 }}
-            className="inline-flex items-center space-x-2 mb-6"
+            className="inline-flex items-center space-x-2 mb-6 pointer-events-auto"
           >
             <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse" />
             <span className="text-xs font-medium text-white/40 uppercase tracking-[0.15em]">
@@ -91,7 +91,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Main Title — Dynamic typing/reveal */}
-          <div className="mb-6">
+          <div className="mb-6 pointer-events-auto">
             <motion.h1
               className="section-title-cinema leading-[1.1]"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
@@ -111,7 +111,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 3.2 }}
-            className="text-white/40 text-base md:text-lg max-w-xl mb-8 leading-relaxed"
+            className="text-white/40 text-base md:text-lg max-w-xl mb-8 leading-relaxed pointer-events-auto"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -121,7 +121,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 3.4 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
+            className="flex flex-col sm:flex-row items-start gap-4 pointer-events-auto"
           >
             <Link
               href="https://wa.me/5491127537746"
