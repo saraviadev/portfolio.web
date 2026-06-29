@@ -56,11 +56,17 @@ export function HeroSplineBackground() {
       }
     };
 
+    const handleMouseLeave = () => {
+      setIsInteracting(false);
+    };
+
     const container = containerRef.current;
     window.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
     
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
@@ -94,8 +100,8 @@ export function HeroSplineBackground() {
         <div 
           className={`w-full h-[115%] transition-all duration-[2000ms] ease-out origin-center ${
             isInteracting 
-              ? 'scale-[1.20] translate-y-[5%] translate-x-[2%]' 
-              : 'scale-[1.25] translate-y-[10%] translate-x-[6%]'
+              ? 'scale-[1.10] translate-y-[2%] translate-x-[2%]' 
+              : 'scale-[1.30] translate-y-[10%] translate-x-[6%]'
           }`}
         >
           <Spline scene="https://prod.spline.design/o-V6F6pRACjmT4a9/scene.splinecode" />
