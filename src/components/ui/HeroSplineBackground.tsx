@@ -53,6 +53,20 @@ export function HeroSplineBackground() {
           x: e.clientX - rect.left,
           y: e.clientY - rect.top,
         });
+        
+        // Forward pointer events to Spline canvas so it tracks the mouse even when it's on the left side of the screen
+        const splineCanvas = containerRef.current.querySelector('canvas');
+        if (splineCanvas) {
+          const canvasRect = splineCanvas.getBoundingClientRect();
+          // If mouse is outside the canvas (e.g. on the left side where text is), manually feed it to Spline
+          if (e.clientX < canvasRect.left || e.clientX > canvasRect.right || e.clientY < canvasRect.top || e.clientY > canvasRect.bottom) {
+            splineCanvas.dispatchEvent(new PointerEvent('pointermove', {
+              clientX: e.clientX,
+              clientY: e.clientY,
+              bubbles: true
+            }));
+          }
+        }
       }
     };
 
