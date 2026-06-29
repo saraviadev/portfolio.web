@@ -72,6 +72,17 @@ export function HeroSplineBackground() {
 
     const handleMouseLeave = () => {
       setIsInteracting(false);
+      
+      const splineCanvas = containerRef.current?.querySelector('canvas');
+      if (splineCanvas) {
+        const canvasRect = splineCanvas.getBoundingClientRect();
+        // Reset gaze to center when mouse leaves
+        splineCanvas.dispatchEvent(new PointerEvent('pointermove', {
+          clientX: canvasRect.left + canvasRect.width / 2,
+          clientY: canvasRect.top + canvasRect.height / 2,
+          bubbles: true
+        }));
+      }
     };
 
     const container = containerRef.current;
@@ -114,7 +125,7 @@ export function HeroSplineBackground() {
         <div 
           className={`w-full h-[115%] transition-all duration-[2000ms] ease-out origin-center ${
             isInteracting 
-              ? 'scale-[1.10] translate-y-[2%] translate-x-[2%]' 
+              ? 'scale-[1.18] translate-y-[4%] translate-x-[2%]' 
               : 'scale-[1.30] translate-y-[10%] translate-x-[6%]'
           }`}
         >
