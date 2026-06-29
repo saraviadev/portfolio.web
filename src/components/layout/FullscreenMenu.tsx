@@ -120,14 +120,14 @@ export function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
                 const isOtherHovered = hoveredLink !== null && hoveredLink !== link.href;
 
                 return (
-                  <div key={link.href} className="overflow-hidden py-2 pr-4">
+                  <div key={link.href} className="overflow-hidden py-4 pr-4">
                     <motion.div variants={linkVariants}>
                       <Link
                         href={link.href}
                         className={`inline-block font-bold uppercase tracking-tighter hover-target transition-all duration-500 ${
                           isOtherHovered ? "opacity-30 blur-[4px] scale-[0.98]" : "opacity-100 blur-0 scale-100"
                         }`}
-                        style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.1 }}
+                        style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.3, paddingBottom: "0.2em" }}
                         onClick={handleLinkClick}
                         onMouseEnter={() => setHoveredLink(link.href)}
                         onMouseLeave={() => setHoveredLink(null)}
