@@ -2,7 +2,7 @@
 
 # 🏋️‍♂️ Looserfit Web & E-Commerce
 
-**Plataforma de E-Commerce y Marca Interactiva de Fitness de Alto Rendimiento**
+**Plataforma de E-Commerce y Marca Interactiva de Ropa Urbana**
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
@@ -18,7 +18,7 @@
 
 ## 📖 Sobre el Proyecto
 
-**Looserfit** es una plataforma de e-commerce moderna desarrollada para una marca de ropa y accesorios de fitness. Está diseñada con una arquitectura Fullstack enfocada en el rendimiento, la escalabilidad y una experiencia de usuario (UX) premium y fluida.
+**Looserfit** es una plataforma de e-commerce moderna desarrollada para una marca de indumentaria y ropa urbana. Está diseñada con una arquitectura Fullstack enfocada en el rendimiento, la escalabilidad y una experiencia de usuario (UX) premium y fluida.
 
 El sistema maneja desde la visualización dinámica del catálogo de productos hasta la pasarela de pagos segura y la administración de inventario a través de un panel de control personalizado.
 
