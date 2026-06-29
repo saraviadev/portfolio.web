@@ -5,7 +5,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { CodeSpotlightBg } from "@/components/ui/CodeSpotlightBg";
-import { FloatingAI } from "@/components/ui/FloatingAI";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Preloader } from "@/components/ui/Preloader";
@@ -60,7 +59,6 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <Preloader />
-          <FloatingAI />
           <CodeSpotlightBg />
           <SmoothScroll>
             <CustomCursor />

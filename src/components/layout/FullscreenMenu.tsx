@@ -181,15 +181,18 @@ export function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
 
                 {/* Social & Language */}
                 <div className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <Link href="https://github.com/saraviadev" target="_blank" className="text-white/40 hover:text-white transition-colors hover-target">
+                  <div className="flex flex-wrap items-center gap-6">
+                    <Link href="https://github.com/saraviadev" target="_blank" className="text-white/40 hover:text-white transition-colors flex items-center gap-2 text-sm hover-target">
                       <FaGithub className="w-4 h-4" />
+                      <span>GitHub</span>
                     </Link>
-                    <Link href="https://www.linkedin.com/in/theo-saravia-239688364/" target="_blank" className="text-white/40 hover:text-white transition-colors hover-target">
+                    <Link href="https://www.linkedin.com/in/theo-saravia-239688364/" target="_blank" className="text-white/40 hover:text-white transition-colors flex items-center gap-2 text-sm hover-target">
                       <FaLinkedin className="w-4 h-4" />
+                      <span>LinkedIn</span>
                     </Link>
-                    <Link href="https://instagram.com/saravia.devv" target="_blank" className="text-white/40 hover:text-white transition-colors hover-target">
+                    <Link href="https://instagram.com/saravia.devv" target="_blank" className="text-white/40 hover:text-white transition-colors flex items-center gap-2 text-sm hover-target">
                       <FaInstagram className="w-4 h-4" />
+                      <span>Instagram</span>
                     </Link>
                   </div>
 

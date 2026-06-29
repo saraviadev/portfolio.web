@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 
 import { DynamicText } from "@/components/ui/DynamicText";
-import { InteractiveCyberGrid } from "@/components/ui/InteractiveCyberGrid";
+import { HeroSplineBackground } from "@/components/ui/HeroSplineBackground";
 
 export function HeroSection() {
   const { t, language } = useLanguage();
@@ -61,14 +61,14 @@ export function HeroSection() {
     >
       {/* Background Container */}
       <div 
-        className="absolute inset-0 z-0 transition-transform duration-300 ease-out pointer-events-none"
+        className="absolute inset-0 z-0 transition-transform duration-300 ease-out"
         style={{
           transform: "rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.05)",
           transformStyle: "preserve-3d",
           willChange: "transform"
         }}
       >
-        <InteractiveCyberGrid />
+        <HeroSplineBackground />
       </div>
 
       {/* Dark overlay gradient for maximum text readability */}

@@ -21,7 +21,7 @@ export const translations = {
       title_1: "Architecting the",
       title_2: "digital future.",
       subtitle: "Who is Saravia Dev?",
-      content: "I am Theo Saravia, a Fullstack Developer dedicated to engineering high-performance interactive interfaces and robust, scalable backend systems. I balance modern design aesthetics with clean code practices to deliver stable, ultra-fast software solutions optimized for the digital era."
+      content: "I'm Theo Saravia. My background in structural engineering (Maestro Mayor de Obras) gave me a deep foundation in logical problem solving and rigorous planning. Today, as a Fullstack Developer, I apply that same analytical rigor to software architecture. Being highly autodidact allows me to quickly integrate cutting-edge tools, like AI workflows, to deliver stable, high-performance, and scalable solutions that drive real results."
     },
     services: {
       title_1: "Engineering",
@@ -30,15 +30,15 @@ export const translations = {
       items: [
         {
           title: "Frontend Engineering",
-          description: "Stunning, high-performance user interfaces using React, Next.js, and TypeScript. Styled with Tailwind CSS and animated smoothly with Framer Motion for premium user experience."
+          description: "Stunning, high-performance user interfaces. I focus on creating responsive, interactive, and accessible web experiences that engage users through smooth animations and premium design aesthetics."
         },
         {
           title: "Backend Architectures",
-          description: "Ultra-fast servers and robust APIs developed in Node.js, Express, and TypeScript. Secure database integrations, authentication pipelines, and real-time connectivity."
+          description: "Ultra-fast servers and robust APIs. I design secure database structures, strict authentication pipelines, and scalable microservices that handle complex business logic efficiently."
         },
         {
           title: "AI Integration & Automation",
-          description: "Supercharging software with AI capabilities. Integrating Large Language Models (LLMs), Puppeteer web-scrapers, and automated background tasks to scale operations."
+          description: "Supercharging software with AI capabilities. Integrating Large Language Models (LLMs), automated web-scrapers, and background tasks to reduce manual toil and scale operations."
         }
       ]
     },
@@ -239,7 +239,7 @@ export const translations = {
       title_1: "Arquitectando el",
       title_2: "futuro digital.",
       subtitle: "¿Quién es Saravia Dev?",
-      content: "Soy Theo Saravia, un Desarrollador Fullstack apasionado por programar interfaces interactivas de alto rendimiento y arquitecturas de servidor robustas y escalables. Equilibro la estética del diseño moderno con prácticas de código limpio para entregar soluciones de software estables, rápidas y optimizadas para la era digital."
+      content: "Soy Theo Saravia. Mi formación en ingeniería estructural (Maestro Mayor de Obras) me dio una base profunda en la resolución lógica de problemas y planificación rigurosa. Hoy, como Desarrollador Fullstack, aplico ese mismo rigor analítico a la arquitectura de software. Ser altamente autodidacta me permite integrar rápidamente herramientas modernas, como flujos de IA, para entregar soluciones estables, rápidas y escalables que generan resultados reales."
     },
     services: {
       title_1: "Servicios de",
@@ -248,15 +248,15 @@ export const translations = {
       items: [
         {
           title: "Ingeniería Frontend",
-          description: "Interfaces de usuario hermosas y de alto rendimiento utilizando React, Next.js y TypeScript. Estilizadas con Tailwind CSS y animadas de forma fluida con Framer Motion para una experiencia premium."
+          description: "Interfaces de usuario hermosas y de alto rendimiento. Me enfoco en crear experiencias web responsivas, interactivas y accesibles que cautivan a los usuarios a través de animaciones fluidas y diseño premium."
         },
         {
           title: "Arquitecturas Backend",
-          description: "Servidores rápidos y APIs robustas desarrolladas en Node.js, Express y TypeScript. Integración segura de bases de datos, flujos de autenticación y conectividad en tiempo real."
+          description: "Servidores rápidos y APIs robustas. Diseño estructuras de bases de datos seguras, flujos de autenticación estrictos y microservicios escalables que manejan la lógica de negocio eficientemente."
         },
         {
           title: "Integración de IA & Automatización",
-          description: "Potenciando el software con capacidades de Inteligencia Artificial. Integración de Modelos de Lenguaje (LLMs), scrapers web con Puppeteer y tareas en segundo plano automatizadas para escalar operaciones."
+          description: "Potenciando el software con Inteligencia Artificial. Integración de Modelos de Lenguaje (LLMs), scrapers web y tareas en segundo plano automatizadas para reducir el trabajo manual y escalar operaciones."
         }
       ]
     },
